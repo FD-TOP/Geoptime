@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadre Légal Intégral — GEOPTIME</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        acidGreen: '#ccff00',
+                        dark: '#050505',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        html, body { cursor: none; }
+        #cursor-dot {
+            width: 6px; height: 6px;
+            background-color: #ccff00;
+            position: fixed; top: 0; left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%; z-index: 9999;
+            pointer-events: none;
+        }
+        #cursor-outline {
+            width: 30px; height: 30px;
+            border: 2px solid #ccff00;
+            position: fixed; top: 0; left: 0;
+            transform: translate(-50%, -50%);
+            border-radius: 50%; z-index: 9998;
+            pointer-events: none;
+            transition: all 0.15s ease-out;
+        }
+        .cursor-hover {
+            transform: translate(-50%, -50%) scale(1.5) !important;
+            background-color: rgba(204, 255, 0, 0.1);
+        }
+        :root {
+            --acid-green: #ccff00;
+            --dark-bg: #050505;
+        }
+        body { 
+            background-color: var(--dark-bg); 
+            color: #94a3b8; 
+            font-family: 'Inter', sans-serif;
+            background-image: radial-gradient(circle at 50% -20%, #1a1a1a 0%, #050505 100%);
+        }
+        .font-title { font-family: 'Syncopate', sans-serif; }
+        .glass { 
+            background: rgba(255, 255, 255, 0.02); 
+            backdrop-filter: blur(12px); 
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .text-gradient {
+            background: linear-gradient(to right, #ccff00, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .legal-card {
+            border-left: 2px solid rgba(204, 255, 0, 0.1);
+            padding-left: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        h3 { color: white; font-weight: 800; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.1em; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+        h3::before { content: "//"; color: #ccff00; }
+
+        /* Style ajouté pour le bandeau */
+        #cookie-banner.visible {
+            opacity: 1;
+            transform: translate(-50%, 0);
+            pointer-events: auto;
+        }
+    </style>
+</head>
+
+<body class="antialiased selection:bg-acidGreen selection:text-dark">
+    <div id="cursor-dot"></div>
+    <div id="cursor-outline"></div>
+
+    <div id="cookie-banner" class="fixed bottom-8 left-1/2 -translate-x-1/2 w-[90%] max-w-4xl z-[10000] opacity-0 translate-y-10 pointer-events-none transition-all duration-700 ease-out">
+        <div class="glass p-6 md:p-8 rounded-[2.5rem] border border-acidGreen/30 shadow-[0_0_50px_rgba(0,0,0,0.9)] flex flex-col md:flex-row items-center gap-6 bg-black/90 backdrop-blur-2xl">
+            <div class="flex-1 text-center md:text-left">
+                <h4 class="font-title text-acidGreen text-[10px] uppercase tracking-[0.2em] mb-2">Protocol Cookie Sync</h4>
+                <p class="text-[11px] text-slate-300 leading-relaxed uppercase font-medium">
+                    GEOPTIME requiert l'activation des traceurs pour valider vos calculs d'itinéraires. 
+                    <span class="text-white/40 italic">Le refus peut limiter certaines fonctionnalités.</span>
+                </p>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
+                <button id="decline-cookies" class="px-8 py-3 rounded-xl text-[9px] font-title uppercase tracking-widest border border-white/10 hover:bg-white/5 transition text-white">
+                    Refuser
+                </button>
+                <button id="accept-cookies" class="px-8 py-3 rounded-xl text-[9px] font-title uppercase tracking-widest bg-acidGreen text-dark font-black hover:shadow-[0_0_20px_#ccff00] transition">
+                    Accepter
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-6xl mx-auto px-6 py-20">
+        
+        <header class="mb-32 text-center">
+            <a href="index.html" class="inline-flex items-center gap-2 text-acidGreen font-title text-[9px] uppercase tracking-[0.3em] mb-12 group">
+                <span class="group-hover:-translate-x-2 transition-transform">←</span> Revenir sur le site
+            </a>
+            <h1 class="font-title text-5xl md:text-8xl text-white font-bold mb-8 tracking-tighter uppercase italic">
+                Protocole <span class="text-gradient">Juridique</span>
+            </h1>
+            <div class="flex justify-center gap-8 text-[10px] font-title text-slate-500 uppercase tracking-[0.2em]">
+                <span>Status: Binding</span>
+                <span>Region: EU-FR</span>
+                <span>ID: GPT-2026-X</span>
+            </div>
+        </header>
+
+        <nav class="sticky top-8 z-50 flex justify-center mb-40">
+            <div class="glass p-2 rounded-full border border-white/10 flex gap-2">
+                <a href="#cgu" class="px-6 py-2 rounded-full text-[9px] font-title uppercase hover:bg-acidGreen hover:text-dark transition">01. CGU</a>
+                <a href="#privacy" class="px-6 py-2 rounded-full text-[9px] font-title uppercase hover:bg-acidGreen hover:text-dark transition">02. Confidentialité</a>
+                <a href="#cookies" class="px-6 py-2 rounded-full text-[9px] font-title uppercase hover:bg-acidGreen hover:text-dark transition">03. COOKIES</a>
+            </div>
+        </nav>
+
+        <section id="cgu" class="mb-56">
+            <div class="flex items-center gap-6 mb-16">
+                <h2 class="font-title text-4xl text-white italic">01. CGU <span class="text-acidGreen text-sm block not-italic mt-2">Terms of Service</span></h2>
+                <div class="h-px flex-1 bg-gradient-to-r from-acidGreen/30 to-transparent"></div>
+            </div>
+
+            <div class="glass p-8 md:p-20 rounded-[4rem] border border-white/5 space-y-12 text-[13px] leading-relaxed text-slate-400">
+                
+                <div class="legal-card">
+                    <h3>Article 1 : Primauté des conditions</h3>
+                    <p>Les présentes Conditions Générales d’Utilisation (CGU) régissent l'accès et l'utilisation de l'écosystème GEOPTIME. L'utilisation de l'interface graphique ou des points de terminaison API vaut acceptation irrévocable du protocole. Aucune condition particulière ou autre document contractuel ne peut, sauf accord exprès écrit, prévaloir sur les présentes. GEOPTIME se réserve le droit de modifier ces termes à tout moment, les modifications étant opposables dès leur mise en ligne.</p>
+                </div>
+
+                <div class="legal-card">
+                    <h3>Article 2 : Licence et Restrictions d'Usage</h3>
+                    <p>GEOPTIME concède à l'utilisateur une licence limitée, révocable, non-exclusive et non-transférable pour l'exploitation des outils de calcul d'itinéraires. 
+                    <strong>Il est strictement interdit de :</strong></p>
+                    <ul class="list-none mt-4 space-y-2">
+                        <li><span class="text-acidGreen">/</span> Réaliser toute forme d'ingénierie inverse (Reverse Engineering) sur les algorithmes de tri propriétaire.</li>
+                        <li><span class="text-acidGreen">/</span> Utiliser le service pour alimenter une base de données concurrente (Data Harvesting).</li>
+                        <li><span class="text-acidGreen">/</span> Contourner les limitations de requêtes par l'utilisation de proxys tournants ou de réseaux botnets.</li>
+                        <li><span class="text-acidGreen">/</span> Injecter des scripts malveillants ou tenter de saturer la bande passante par des attaques DoS.</li>
+                    </ul>
+                </div>
+
+                <div class="legal-card">
+                    <h3>Article 3 : Propriété Intellectuelle et Data Rights</h3>
+                    <p>L'intégralité du contenu présent sur GEOPTIME (interfaces, logos, structure du code, brevets algorithmiques) est la propriété exclusive de GEOPTIME. L'utilisateur concède à GEOPTIME une licence d'utilisation sur les données de tournées anonymisées aux seules fins d'amélioration de l'intelligence artificielle de routage. Cette licence est mondiale et perpétuelle tant que l'anonymisation est maintenue.</p>
+                </div>
+
+                <div class="legal-card">
+                    <h3>Article 4 : Garanties et SLA (Service Level Agreement)</h3>
+                    <p>GEOPTIME s'engage sur une obligation de moyens. Bien que notre infrastructure soit distribuée sur plusieurs zones de disponibilité, nous ne garantissons pas que le service sera exempt d'erreurs. Le taux de disponibilité visé est de 99.9% (hors maintenance planifiée). La responsabilité de GEOPTIME est strictement limitée aux dommages directs prouvés, et plafonnée au montant des redevances payées par l'utilisateur au cours des six (6) derniers mois précédant l'incident.</p>
+                </div>
+
+                <div class="legal-card">
+                    <h3>Article 5 : Audit et Conformité</h3>
+                    <p>GEOPTIME se réserve le droit d'effectuer des audits automatiques sur les modes d'utilisation pour détecter toute fraude à la licence. En cas de détection d'une utilisation dépassant le quota souscrit ou violant les règles de sécurité, GEOPTIME pourra suspendre l'accès sans mise en demeure préalable.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="privacy" class="mb-56">
+            <div class="flex items-center gap-6 mb-16">
+                <h2 class="font-title text-4xl text-white italic">02. Confidentialité <span class="text-acidGreen text-sm block not-italic mt-2">Politique de protection des données</span></h2>
+                <div class="h-px flex-1 bg-gradient-to-r from-acidGreen/30 to-transparent"></div>
+            </div>
+
+            <div class="glass p-8 md:p-20 rounded-[4rem] border border-white/5 space-y-12 text-[13px] leading-relaxed text-slate-400">
+                
+                <div class="legal-card">
+                    <h3>Article 1 : Collecte des Points de Données</h3>
+                    <p>GEOPTIME agit en qualité de Responsable de Traitement pour les données de compte et en qualité de Sous-traitant pour les données de logistique client injectées par l'utilisateur. Nous collectons :</p>
+                    <ul class="list-none mt-4 space-y-2">
+                        <li><span class="text-acidGreen">/</span> <strong>Identité :</strong> Nom, Email, Organisation (via protocole OAuth ou Direct Login).</li>
+                        <li><span class="text-acidGreen">/</span> <strong>Géolocalisation :</strong> Coordonnées GPS des points d'intérêt, horodatage des passages, télémétrie de navigation.</li>
+                        <li><span class="text-acidGreen">/</span> <strong>Métadonnées techniques :</strong> Adresse IP, User Agent, Empreinte de navigateur (pour la sécurité antifraude).</li>
+                    </ul>
+                </div>
+
+                <div class="legal-card">
+                    <h3>Article 2 : Finalités du Traitement</h3>
+                    <p>Le traitement des données est nécessaire à l'exécution du contrat de service. Les finalités incluent le calcul des tournées optimales, la génération de rapports d'économies de CO2, et la prévention des cyberattaques. Aucune donnée n'est traitée à des fins de profilage publicitaire tiers.</p>
+                </div>
+
+                <div class="legal-card">
+                    <h3>Article 3 : Sécurité et Chiffrement</h3>
+                    <p>GEOPTIME déploie des mesures de sécurité de grade militaire :</p>
+                    <ul class="list-none mt-4 space-y-2 italic">
+                        <li>- Chiffrement au repos (At-Rest) via AES-256 bits.</li>
+                        <li>- Chiffrement en transit (In-Motion) via TLS 1.3.</li>
+                        <li>- Isolation des bases de données par environnement client (Sandboxing).</li>
+                        <li>- Hashage des mots de passe via l'algorithme Argon2id.</li>
+                    </ul>
+                </div>
+
+                <div class="legal-card">
+                    <h3>Article 4 : Conservation et Transfert Hors UE</h3>
+                    <p>Les données sont conservées pour la durée de la relation contractuelle plus 5 ans (obligations légales). GEOPTIME privilégie l'hébergement en France (AWS Region eu-west-3). Si un transfert hors UE est nécessaire, il est encadré par les Clauses Contractuelles Types de la Commission Européenne.</p>
+                </div>
+
+                <div class="legal-card">
+                    <h3>Article 5 : Vos Droits RGPD</h3>
+                    <p>Vous disposez des droits d'accès, de rectification, d'effacement, de limitation du traitement, de portabilité des données et d'opposition. Pour exercer ces droits, vous pouvez générer un ticket de support "DATA-REQUEST" ou contacter notre DPO à l'adresse privacy@geoptime.fr. Une réponse sera apportée sous 30 jours maximum.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="cookies" class="mb-56">
+            <div class="flex items-center gap-6 mb-16">
+                <h2 class="font-title text-4xl text-white italic">03. COOKIES <span class="text-acidGreen text-sm block not-italic mt-2">Tracking Management</span></h2>
+                <div class="h-px flex-1 bg-gradient-to-r from-acidGreen/30 to-transparent"></div>
+            </div>
+
+            <div class="glass p-8 md:p-20 rounded-[4rem] border border-white/5 space-y-12 text-[13px] leading-relaxed text-slate-400">
+                
+                <div class="legal-card">
+                    <h3>Article 1 : Définition des Traceurs</h3>
+                    <p>Les cookies sont des fragments de code stockés localement sur votre terminal. GEOPTIME les utilise pour stabiliser l'état de l'interface (Redux Persist) et garantir la sécurité des jetons JWT (JSON Web Tokens).</p>
+                </div>
+
+                <div class="legal-card">
+                    <h3>Article 2 : Typologie des Cookies utilisés</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-6">
+                        <div class="bg-white/5 p-6 rounded-3xl">
+                            <h4 class="text-white font-bold mb-2">Cookies Fonctionnels (Obligatoires)</h4>
+                            <p class="text-[11px]">Indispensables au fonctionnement de l'algorithme et à la gestion de votre panier d'abonnement. Ils ne peuvent être refusés.</p>
+                        </div>
+                        <div class="bg-white/5 p-6 rounded-3xl">
+                            <h4 class="text-white font-bold mb-2">Cookies Analytiques (Optionnels)</h4>
+                            <p class="text-[11px]">Permettent de comprendre quelles fonctionnalités de la carte sont les plus utilisées via des outils comme Hotjar ou Google Analytics (Anonymisé).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="legal-card">
+                    <h3>Article 3 : Durée de Validité</h3>
+                    <p>Le consentement pour les cookies optionnels est valable 6 mois. Les cookies de session expirent dès la fermeture de l'onglet. Les cookies persistants ne dépassent jamais 13 mois conformément aux directives de la CNIL.</p>
+                </div>
+
+                <div class="bg-acidGreen/10 border border-acidGreen/20 p-8 rounded-[2rem] text-center">
+                    <p class="text-white font-bold mb-4 uppercase tracking-widest text-xs">Gestion de vos préférences</p>
+                    <p class="mb-6 text-xs italic">Vous pouvez réinitialiser vos choix à tout moment en cliquant sur le bouton ci-dessous.</p>
+                    <button id="reset-cookies-btn" class="px-10 py-4 bg-acidGreen text-dark font-black text-[10px] uppercase rounded-full hover:scale-105 transition active:scale-95">Réinitialiser les préférences relatives aux cookies</button>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer class="py-20 border-t border-white/5 bg-dark">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col items-center gap-12">
+            <div class="flex items-center gap-2">
+                <div class="w-6 h-6 bg-acidGreen rounded-sm rotate-45"></div>
+                <span class="font-title text-acidGreen text-2xl uppercase italic">GEOPTIME</span>
+            </div>
+            <p class="font-title text-[7px] text-slate-800 tracking-[1.5em] text-center">
+                TERMINAL LEGAL V1.0.4 — ENCRYPTED BY GEOPTIME PROTOCOLS
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        const dot = document.querySelector("#cursor-dot");
+        const outline = document.querySelector("#cursor-outline");
+        window.addEventListener("mousemove", (e) => {
+            dot.style.left = outline.style.left = `${e.clientX}px`;
+            dot.style.top = outline.style.top = `${e.clientY}px`;
+        });
+        const links = document.querySelectorAll('a, button, .glass');
+        links.forEach(l => {
+            l.addEventListener('mouseenter', () => outline.classList.add('cursor-hover'));
+            l.addEventListener('mouseleave', () => outline.classList.remove('cursor-hover'));
+        });
+
+        // LOGIQUE DES COOKIES AJOUTÉE
+        const banner = document.getElementById("cookie-banner");
+        const acceptBtn = document.getElementById("accept-cookies");
+        const declineBtn = document.getElementById("decline-cookies");
+        const resetBtn = document.getElementById("reset-cookies-btn");
+
+        const checkConsent = () => {
+            const consent = localStorage.getItem("geoptime_consent");
+            if (!consent) {
+                setTimeout(() => { banner.classList.add("visible"); }, 1000);
+            }
+        };
+
+        const setConsent = (choice) => {
+            localStorage.setItem("geoptime_consent", choice);
+            banner.classList.remove("visible");
+        };
+
+        acceptBtn.addEventListener("click", () => setConsent("accepted"));
+        declineBtn.addEventListener("click", () => setConsent("declined"));
+        
+        // C'est ici que la modification se fait pour permettre de remodifier via le bouton
+        resetBtn.addEventListener("click", () => {
+            localStorage.removeItem("geoptime_consent"); // On supprime le choix actuel
+            banner.classList.add("visible"); // On réaffiche le bandeau pour modifier
+        });
+
+        checkConsent();
+    </script>
+</body>
+
+<footer class="pt-20 pb-10 border-t border-white/5 bg-dark relative overflow-hidden">
+    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-acidGreen/30 to-transparent"></div>
+
+    <div class="max-w-7xl mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16 text-left">
+            
+            <div class="space-y-6">
+                <div class="flex items-center gap-2">
+                    <div class="w-5 h-5 bg-acidGreen rounded-sm rotate-45"></div>
+                    <span class="font-title text-acidGreen tracking-tighter text-lg uppercase">GEOPTIME</span>
+                </div>
+                <p class="text-slate-500 text-[11px] leading-relaxed max-w-xs italic uppercase font-medium">
+                    L'intelligence géographique angevine au service de la performance commerciale.
+                </p>
+                <div class="flex gap-3">
+                    <a href="#" class="w-9 h-9 glass rounded-full flex items-center justify-center hover:bg-acidGreen hover:text-dark transition-all duration-300">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c.796 0 1.441.645 1.441 1.44s-.645 1.44-1.441 1.44c-.795 0-1.439-.645-1.439-1.44s.644-1.44 1.439-1.44z"/></svg>
+                    </a>
+                    <a href="#" class="w-9 h-9 glass rounded-full flex items-center justify-center hover:bg-acidGreen hover:text-dark transition-all duration-300">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1.04-.1z"/></svg>
+                    </a>
+                    <a href="#" class="w-9 h-9 glass rounded-full flex items-center justify-center hover:bg-acidGreen hover:text-dark transition-all duration-300">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                    </a>
+                    <a href="#" class="w-9 h-9 glass rounded-full flex items-center justify-center hover:bg-acidGreen hover:text-dark transition-all duration-300">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <h4 class="font-title text-[10px] text-acidGreen tracking-widest uppercase italic">Contact Direct</h4>
+                <ul class="space-y-4">
+                    <li class="flex items-center gap-3 group">
+                        <span class="text-acidGreen text-xs group-hover:scale-125 transition">✉</span>
+                        <a href="mailto:contact@geoptime.fr" class="text-[11px] font-bold text-slate-400 hover:text-white transition uppercase tracking-tighter">contact@geoptime.fr</a>
+                    </li>
+                    <li class="flex items-center gap-3 group">
+                        <span class="text-acidGreen text-xs group-hover:scale-125 transition">☎</span>
+                        <a href="tel:+33241000000" class="text-[11px] font-bold text-slate-400 hover:text-white transition uppercase tracking-tighter">02 41 00 00 00</a>
+                    </li>
+                    <li class="flex items-start gap-3 group">
+                        <span class="text-acidGreen text-xs mt-1">📍</span>
+                        <span class="text-[11px] font-bold text-slate-400 uppercase tracking-tighter leading-relaxed">12 Rue de la Logistique,<br>49000 Angers, France</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="space-y-6">
+                <h4 class="font-title text-[10px] text-acidGreen tracking-widest uppercase italic">Navigation</h4>
+                <div class="grid grid-cols-1 gap-3 text-[11px] font-black uppercase tracking-widest text-slate-500">
+                   <a href="index.html#mission" class="hover:text-acidGreen transition">Notre Mission</a>
+                <a href="index.html#performance" class="hover:text-acidGreen transition">Performance</a>
+                <a href="index.html#solution" class="hover:text-acidGreen transition">La Solution</a>
+                <a href="index.html#demo-video" class="hover:text-acidGreen transition">Démos</a>
+                <a href="index.html#Avis" class="hover:text-acidGreen transition">Avis</a>
+                <a href="index.html#equipe" class="hover:text-acidGreen transition">Equipe</a>
+                <a href="index.html#tarifs" class="hover:text-acidGreen transition">Tarification</a>
+                <a href="index.html#faq" class="hover:text-acidGreen transition">Support</a>
+                <a href="index.html#contact" class="hover:text-acidGreen transition">Contact</a>
+
+                </div>
+            </div>
+
+            <div class="space-y-8">
+                <h4 class="font-title text-[10px] text-acidGreen tracking-widest uppercase italic">L'Expérience Mobile</h4>
+                
+                <div class="flex flex-col gap-3">
+                    <a href="#" class="glass flex items-center gap-3 px-5 py-3 rounded-2xl hover:border-acidGreen/50 transition-all group active:scale-95">
+                        <svg class="w-6 h-6 text-white group-hover:text-acidGreen transition" fill="currentColor" viewBox="0 0 24 24"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.1 2.48-1.34.03-1.77-.79-3.29-.79-1.53 0-1.99.77-3.29.82-1.35.05-2.33-1.32-3.16-2.52-1.7-2.45-3-6.92-1.25-9.95.87-1.5 2.41-2.45 4.1-2.48 1.28-.02 2.5.87 3.29.87.79 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.24-1.99 1.1-3.15-1.02.04-2.25.68-2.98 1.54-.66.76-1.24 1.93-1.1 3.03 1.14.09 2.25-.6 2.98-1.42Z"/></svg>
+                        <div class="text-left">
+                            <p class="text-[7px] uppercase text-slate-500 font-black leading-none mb-1">Télécharger sur</p>
+                            <p class="text-[12px] font-black uppercase tracking-tighter">App Store</p>
+                        </div>
+                    </a>
+
+                    <a href="#" class="glass flex items-center gap-3 px-5 py-3 rounded-2xl hover:border-acidGreen/50 transition-all group active:scale-95">
+                        <svg class="w-6 h-6 text-white group-hover:text-acidGreen transition" fill="currentColor" viewBox="0 0 24 24"><path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.31-.732V2.546c0-.272.112-.52.309-.732zm11.298 11.298l3.159-3.158L3.257 2.052l11.65 11.06zm.707.707l2.854 2.712-14.211 8.23 11.357-10.942zm4.195-2.712l-3.488 1.998-1.163 1.163 1.163 1.163 3.488 1.998a1.002 1.002 0 0 0 0-1.722l-1.44-1.439 1.44-1.44a1.002 1.002 0 0 0 0-1.72z"/></svg>
+                        <div class="text-left">
+                            <p class="text-[7px] uppercase text-slate-500 font-black leading-none mb-1">Disponible sur</p>
+                            <p class="text-[12px] font-black uppercase tracking-tighter">Google Play</p>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="flex items-center gap-3 text-acidGreen/40">
+                    <div class="w-1.5 h-1.5 bg-acidGreen rounded-full animate-pulse"></div>
+                    <span class="text-[9px] font-bold uppercase tracking-[0.2em]">Systèmes Opérationnels</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+            <p class="font-title text-[8px] text-slate-700 tracking-[1em] uppercase">
+                GEOPTIME © 2026 // FABRIQUÉ À ANGERS
+            </p>
+            <div class="flex gap-8 text-[9px] font-black uppercase tracking-widest text-slate-700">
+                <a href="#cgu" class="hover:text-acidGreen transition">CGU</a>
+                <a href="#privacy" class="hover:text-acidGreen transition">Confidentialité</a>
+                <a href="#cookies" class="hover:text-acidGreen transition">Cookies</a>
+            </div>
+        </div>
+    </div>
+</footer>
+</html>
