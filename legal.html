@@ -33,7 +33,7 @@
             transition: background-color 0.4s ease, color 0.4s ease;
         }
 
-        /* --- MODE CLAIR REVISITÉ (PURE LIGHT) --- */
+        /* --- MODE CLAIR OPTIMISÉ --- */
         .light-mode { 
             background-color: #f8fafc !important; 
             color: #334155 !important;
@@ -43,31 +43,15 @@
             background: #ffffff !important; 
             border: 1px solid rgba(148, 163, 184, 0.2) !important; 
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03) !important;
-            color: #334155 !important;
         }
         .light-mode h1, .light-mode h2, .light-mode h3 { color: #0f172a !important; }
         .light-mode .text-slate-400, .light-mode .text-slate-500 { color: #64748b !important; }
         .light-mode .text-gradient { background: linear-gradient(to right, #4d7c0f, #0f172a) !important; -webkit-background-clip: text !important; }
-        .light-mode footer { background-color: #f1f5f9 !important; border-top: 1px solid #e2e8f0 !important; }
-        .light-mode nav .glass { background: rgba(255, 255, 255, 0.8) !important; }
-
-        /* --- SWITCH THEME DESIGN --- */
-        .theme-switch {
-            width: 54px; height: 28px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 50px;
-            position: relative; cursor: pointer;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
+        
+        /* --- SWITCH THEME --- */
+        .theme-switch { width: 54px; height: 28px; background: rgba(255,255,255,0.1); border-radius: 50px; position: relative; cursor: pointer; border: 1px solid rgba(255,255,255,0.2); }
         .light-mode .theme-switch { background: #e2e8f0; border-color: #cbd5e1; }
-        .switch-dot {
-            width: 22px; height: 22px;
-            background: #a3e635;
-            border-radius: 50%;
-            position: absolute; top: 2px; left: 3px;
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            display: flex; align-items: center; justify-content: center; font-size: 11px;
-        }
+        .switch-dot { width: 22px; height: 22px; background: #a3e635; border-radius: 50%; position: absolute; top: 2px; left: 3px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: flex; align-items: center; justify-content: center; font-size: 11px; }
         .switch-active { transform: translateX(25px); background: #0f172a; color: white; }
 
         .font-title { font-family: 'Syncopate', sans-serif; }
@@ -88,19 +72,6 @@
     <div id="cursor-dot"></div>
     <div id="cursor-outline"></div>
 
-    <div id="cookie-banner" class="fixed bottom-8 left-1/2 -translate-x-1/2 w-[90%] max-w-4xl z-[10000] opacity-0 translate-y-10 pointer-events-none transition-all duration-700 ease-out">
-        <div class="glass p-6 md:p-8 rounded-[2.5rem] border border-acidGreen/30 shadow-2xl flex flex-col md:flex-row items-center gap-6 bg-black/90 backdrop-blur-2xl">
-            <div class="flex-1 text-center md:text-left">
-                <h4 class="font-title text-acidGreen text-[10px] uppercase tracking-[0.2em] mb-2">Protocol Cookie Sync</h4>
-                <p class="text-[11px] text-slate-300 leading-relaxed uppercase font-medium">Activation des traceurs requise pour la précision des itinéraires.</p>
-            </div>
-            <div class="flex gap-3">
-                <button id="decline-cookies" class="px-8 py-3 rounded-xl text-[9px] font-title uppercase tracking-widest border border-white/10 text-white">Refuser</button>
-                <button id="accept-cookies" class="px-8 py-3 rounded-xl text-[9px] font-title uppercase tracking-widest bg-acidGreen text-dark font-black">Accepter</button>
-            </div>
-        </div>
-    </div>
-
     <div class="max-w-6xl mx-auto px-6 py-20">
         
         <header class="mb-32 text-center">
@@ -116,15 +87,39 @@
                 </div>
             </div>
             <h1 class="font-title text-5xl md:text-8xl text-white font-bold mb-8 tracking-tighter uppercase italic">Protocole <span class="text-gradient">Juridique</span></h1>
+            <p class="font-title text-[10px] text-slate-500 tracking-[0.2em]">GEOPTIME SYSTEM V1.0 — ANGERS, FR</p>
         </header>
 
         <nav class="sticky top-8 z-50 flex justify-center mb-40">
-            <div class="glass p-2 rounded-full border border-white/10 flex gap-2">
-                <a href="#cgu" class="px-6 py-2 rounded-full text-[9px] font-title uppercase hover:bg-acidGreen hover:text-dark transition">01. CGU</a>
-                <a href="#privacy" class="px-6 py-2 rounded-full text-[9px] font-title uppercase hover:bg-acidGreen hover:text-dark transition">02. Vie Privée</a>
-                <a href="#cookies" class="px-6 py-2 rounded-full text-[9px] font-title uppercase hover:bg-acidGreen hover:text-dark transition">03. Cookies</a>
+            <div class="glass p-2 rounded-full border border-white/10 flex flex-wrap justify-center gap-2">
+                <a href="#mentions" class="px-4 py-2 rounded-full text-[9px] font-title uppercase hover:bg-acidGreen hover:text-dark transition">Mentions</a>
+                <a href="#cgu" class="px-4 py-2 rounded-full text-[9px] font-title uppercase hover:bg-acidGreen hover:text-dark transition">CGU</a>
+                <a href="#privacy" class="px-4 py-2 rounded-full text-[9px] font-title uppercase hover:bg-acidGreen hover:text-dark transition">Vie Privée</a>
+                <a href="#cookies" class="px-4 py-2 rounded-full text-[9px] font-title uppercase hover:bg-acidGreen hover:text-dark transition">Cookies</a>
             </div>
         </nav>
+
+        <section id="mentions" class="mb-56">
+            <div class="flex items-center gap-6 mb-16">
+                <h2 class="font-title text-4xl italic uppercase">00. Mentions</h2>
+                <div class="h-px flex-1 bg-gradient-to-r from-acidGreen/40 to-transparent"></div>
+            </div>
+            <div class="glass p-8 md:p-16 rounded-[3rem] space-y-12 text-[13px] leading-relaxed">
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div class="legal-card">
+                        <h3>Éditeur du site</h3>
+                        <p><b>Société :</b> GEOPTIME SAS (en cours de formation)<br>
+                        <b>Siège :</b> 12 Rue de la Logistique, 49000 Angers, France<br>
+                        <b>Directeur de publication :</b> Aurélien Fazilleau</p>
+                    </div>
+                    <div class="legal-card">
+                        <h3>Hébergement</h3>
+                        <p><b>Prestataire :</b> AWS Region Paris (eu-west-3)<br>
+                        <b>Sécurité :</b> Infrastructure certifiée ISO 27001 et conforme RGPD.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <section id="cgu" class="mb-56">
             <div class="flex items-center gap-6 mb-16">
@@ -133,21 +128,25 @@
             </div>
             <div class="glass p-8 md:p-16 rounded-[3rem] space-y-12 text-[13px] leading-relaxed">
                 <p class="italic text-acidGreen">L'objectif est de protéger votre propriété intellectuelle et de définir les règles d'usage de l'application.</p>
+                
                 <div class="legal-card">
                     <h3>Article 1 : Objet du service</h3>
-                    <p>Geoptime fournit une solution logicielle en mode SaaS permettant la visualisation de portefeuilles clients sur carte interactive et l'optimisation algorithmique de tournées commerciales. L'accès au service est réservé aux professionnels.</p>
+                    <p>Geoptime fournit une solution logicielle en mode SaaS (Software as a Service) permettant la visualisation de portefeuilles clients sur carte interactive et l'optimisation algorithmique de tournées commerciales. L'accès au service est strictement réservé aux professionnels (B2B).</p>
                 </div>
+
                 <div class="legal-card">
                     <h3>Article 2 : Propriété Intellectuelle</h3>
-                    <p>L'architecture, les algorithmes de calcul multi-arrêts, les designs, logos et codes sources sont la propriété exclusive de Geoptime. Toute reproduction ou ingénierie inverse est interdite.</p>
+                    <p>L'architecture de l'application, les algorithmes de calcul d'itinéraires multi-arrêts, les designs, logos et codes sources sont la propriété exclusive de Geoptime. Toute reproduction, extraction ou ingénierie inverse est strictement interdite sous peine de poursuites judiciaires.</p>
                 </div>
+
                 <div class="legal-card">
                     <h3>Article 3 : Responsabilité de l'utilisateur</h3>
-                    <p>L'utilisateur est responsable de l'exactitude des données clients importées. Il s'engage à utiliser l'application dans le respect du code de la route ; l'outil ne remplace pas la vigilance du conducteur.</p>
+                    <p>L'utilisateur est responsable de l'exactitude des données clients (adresses, horaires) importées. Il s'engage à utiliser l'application dans le respect du code de la route ; Geoptime est un outil d'aide à la décision et ne remplace en aucun cas la vigilance du conducteur.</p>
                 </div>
+
                 <div class="legal-card">
-                    <h3>Article 4 : Disponibilité (SLA)</h3>
-                    <p>Geoptime s'efforce de maintenir une disponibilité de 99,9 %. Les interruptions pour maintenance sont, si possible, signalées 24h à l'avance.</p>
+                    <h3>Article 4 : Disponibilité du Service (SLA)</h3>
+                    <p>Geoptime s'efforce de maintenir une disponibilité de 99,9 %. Des interruptions temporaires pour maintenance technique peuvent survenir. Elles seront signalées 24h à l'avance sur le tableau de bord utilisateur.</p>
                 </div>
             </div>
         </section>
@@ -159,24 +158,28 @@
             </div>
             <div class="glass p-8 md:p-16 rounded-[3rem] space-y-12 text-[13px] leading-relaxed">
                 <div class="legal-card">
-                    <h3>Article 1 : Données collectées</h3>
-                    <ul class="space-y-2 mt-4">
-                        <li>• <b>Compte :</b> Nom, prénom, email professionnel.</li>
-                        <li>• <b>Logistique :</b> Adresses clients importées pour le calcul.</li>
-                        <li>• <b>Géolocalisation :</b> Position GPS en temps réel pendant le guidage.</li>
+                    <h3>Article 1 : Nature des données collectées</h3>
+                    <p>Nous collectons trois types de données essentielles :</p>
+                    <ul class="mt-2 space-y-1">
+                        <li>• <b>Données de compte :</b> Nom, prénom, email professionnel.</li>
+                        <li>• <b>Données logistiques :</b> Fichiers clients importés pour le calcul.</li>
+                        <li>• <b>Géolocalisation :</b> Position GPS en temps réel durant le guidage mobile.</li>
                     </ul>
                 </div>
+
                 <div class="legal-card">
-                    <h3>Article 2 : Utilisation</h3>
-                    <p>Vos données servent exclusivement à calculer les itinéraires, générer des rapports CO2 et améliorer la précision des cartes. Aucune donnée n'est vendue.</p>
+                    <h3>Article 2 : Utilisation et Finalité</h3>
+                    <p>Vos données servent exclusivement à calculer l'itinéraire le plus efficace, générer des rapports d'économie de CO2 et améliorer la précision cartographique. Vos fichiers ne sont jamais vendus ni partagés avec des tiers.</p>
                 </div>
+
                 <div class="legal-card">
-                    <h3>Article 3 : Sécurité et Sandboxing</h3>
-                    <p>Les données sont hébergées en France (RGPD). Les fichiers clients sont isolés par entreprise (Sandboxing) via chiffrement SSL/TLS 1.3.</p>
+                    <h3>Article 3 : Sécurité et Stockage (Sandboxing)</h3>
+                    <p>Les données sont hébergées sur des serveurs sécurisés en France. Les flux sont chiffrés via SSL/TLS 1.3. Les fichiers clients sont isolés par entreprise via un système de "Sandboxing" pour garantir une étanchéité totale des données.</p>
                 </div>
+
                 <div class="legal-card">
-                    <h3>Article 4 : Vos Droits</h3>
-                    <p>Droit d'accès, rectification et suppression via : <span class="text-acidGreen">privacy@geoptime.fr</span>.</p>
+                    <h3>Article 4 : Vos Droits (RGPD)</h3>
+                    <p>Conformément à la réglementation européenne, vous disposez d'un droit d'accès, de rectification et de suppression. Contactez notre DPO : <span class="text-acidGreen">privacy@geoptime.fr</span>.</p>
                 </div>
             </div>
         </section>
@@ -188,13 +191,21 @@
             </div>
             <div class="glass p-8 md:p-16 rounded-[3rem] space-y-12 text-[13px] leading-relaxed">
                 <div class="legal-card">
-                    <h3>Article 1 : Usage</h3>
-                    <p>Utilisés pour sécuriser votre connexion et mémoriser vos préférences (Thème Clair/Sombre).</p>
+                    <h3>Article 1 : Pourquoi des cookies ?</h3>
+                    <p>Geoptime utilise des traceurs pour sécuriser votre connexion et mémoriser vos préférences d'affichage (choix du Mode Sombre/Clair).</p>
                 </div>
+
                 <div class="legal-card">
-                    <h3>Article 2 : Types</h3>
-                    <p>• <b>Techniques :</b> Obligatoires pour la session.<br>• <b>Performance :</b> Outils d'analyse anonymisés pour optimiser l'interface.</p>
+                    <h3>Article 2 : Liste des cookies</h3>
+                    <p>• <b>Cookies techniques (Obligatoires) :</b> Maintien de session et sécurité.<br>
+                    • <b>Cookies de performance (Optionnels) :</b> Analyse anonymisée de l'usage des cartes pour optimiser l'interface.</p>
                 </div>
+
+                <div class="legal-card">
+                    <h3>Article 3 : Durée de conservation</h3>
+                    <p>Votre consentement est conservé pendant 6 mois. Passé ce délai, le bandeau de choix réapparaîtra automatiquement.</p>
+                </div>
+
                 <div class="bg-acidGreen/10 border border-acidGreen/20 p-8 rounded-2xl text-center">
                     <button id="reset-cookies-btn" class="px-10 py-4 bg-acidGreen text-dark font-black text-[10px] uppercase rounded-full hover:scale-105 transition">Réinitialiser les préférences traceurs</button>
                 </div>
@@ -202,29 +213,46 @@
         </section>
     </div>
 
-    <footer class="pt-24 pb-12 bg-dark transition-colors duration-400">
+    <footer class="pt-24 pb-12 bg-dark transition-all duration-400">
         <div class="max-w-7xl mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16 text-left">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16 text-left">
                 <div class="space-y-4">
                     <div class="flex items-center gap-2">
                         <div class="w-5 h-5 bg-acidGreen rounded-sm rotate-45"></div>
                         <span class="font-title text-acidGreen text-lg uppercase">GEOPTIME</span>
                     </div>
-                    <p class="text-slate-500 text-[11px] uppercase font-bold italic">L'intelligence géographique au service de la performance.</p>
-                </div>
-                <div class="space-y-4">
-                    <h4 class="font-title text-[10px] text-acidGreen uppercase italic">Contact</h4>
-                    <p class="text-[11px] font-bold">✉ contact@geoptime.fr<br>📍 Angers, France</p>
+                    <p class="text-slate-500 text-[11px] uppercase font-bold italic">L'intelligence géographique angevine.</p>
                 </div>
                 <div class="space-y-4">
                     <h4 class="font-title text-[10px] text-acidGreen uppercase italic">Navigation</h4>
-                    <div class="flex gap-4 text-[11px] font-black uppercase text-slate-500">
-                        <a href="index.html" class="hover:text-acidGreen">Accueil</a>
-                        <a href="index.html#tarifs" class="hover:text-acidGreen">Tarifs</a>
+                    <ul class="text-[11px] font-black space-y-2 uppercase text-slate-500">
+                        <li><a href="index.html" class="hover:text-acidGreen transition">Accueil</a></li>
+                        <li><a href="index.html#tarifs" class="hover:text-acidGreen transition">Mission</a></li>
+                        <li><a href="index.html" class="hover:text-acidGreen transition">Performance</a></li>
+                        <li><a href="index.html#faq" class="hover:text-acidGreen transition">Solution</a></li>
+                         <li><a href="index.html" class="hover:text-acidGreen transition">Démos</a></li>
+                         <li><a href="index.html" class="hover:text-acidGreen transition">Avis</a></li>
+                        <li><a href="index.html#tarifs" class="hover:text-acidGreen transition">Equips</a></li>
+                        <li><a href="index.html#tarifs" class="hover:text-acidGreen transition">Tarifs</a></li>
+                        <li><a href="index.html#faq" class="hover:text-acidGreen transition">Support</a></li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="font-title text-[10px] text-acidGreen uppercase italic">Légal</h4>
+                    <ul class="text-[11px] font-black space-y-2 uppercase text-slate-500">
+                        <li><a href="#cgu" class="hover:text-acidGreen transition">CGU</a></li>
+                        <li><a href="#privacy" class="hover:text-acidGreen transition">Vie Privée</a></li>
+                    </ul>
+                </div>
+                <div class="space-y-4">
+                    <h4 class="font-title text-[10px] text-acidGreen uppercase italic">Stores</h4>
+                    <div class="flex flex-col gap-2">
+                        <div class="glass px-4 py-2 rounded-xl text-[9px] text-center uppercase font-bold">App Store</div>
+                        <div class="glass px-4 py-2 rounded-xl text-[9px] text-center uppercase font-bold">Google Play</div>
                     </div>
                 </div>
             </div>
-            <p class="font-title text-[8px] text-slate-700 tracking-[1em] uppercase text-center">GEOPTIME © 2026 // ANGERS</p>
+            <p class="font-title text-[8px] text-slate-700 tracking-[1em] uppercase text-center border-t border-white/5 pt-8">GEOPTIME © 2026 // ANGERS</p>
         </div>
     </footer>
 
@@ -235,24 +263,15 @@
             dot.style.left = outline.style.left = `${e.clientX}px`;
             dot.style.top = outline.style.top = `${e.clientY}px`;
         });
-        const links = document.querySelectorAll('a, button, .glass, .theme-switch');
+        const links = document.querySelectorAll('a, button, .theme-switch');
         links.forEach(l => {
             l.addEventListener('mouseenter', () => outline.classList.add('cursor-hover'));
             l.addEventListener('mouseleave', () => outline.classList.remove('cursor-hover'));
         });
-
-        const banner = document.getElementById("cookie-banner");
-        const setConsent = (choice) => {
-            localStorage.setItem("geoptime_consent", choice);
-            banner.classList.remove("visible");
-        };
-        document.getElementById("accept-cookies").onclick = () => setConsent("accepted");
-        document.getElementById("decline-cookies").onclick = () => setConsent("declined");
         document.getElementById("reset-cookies-btn").onclick = () => {
             localStorage.removeItem("geoptime_consent");
-            banner.classList.add("visible");
+            alert("Préférences réinitialisées. Rechargez la page.");
         };
-        if (!localStorage.getItem("geoptime_consent")) setTimeout(() => banner.classList.add("visible"), 1000);
     </script>
 </body>
 </html>
