@@ -34,23 +34,11 @@
         }
 
         /* --- MODE CLAIR TOTAL (PURE WHITE) --- */
-        .light-mode { 
-            background-color: #ffffff !important; 
-            color: #1e293b !important;
-            background-image: none !important;
-        }
-        .light-mode .glass { 
-            background: #f8fafc !important; 
-            border: 1px solid #e2e8f0 !important; 
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05) !important;
-        }
+        .light-mode { background-color: #ffffff !important; color: #1e293b !important; background-image: none !important; }
+        .light-mode .glass { background: #f8fafc !important; border: 1px solid #e2e8f0 !important; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05) !important; }
         .light-mode h1, .light-mode h2, .light-mode h3 { color: #0f172a !important; }
-        .light-mode input, .light-mode select, .light-mode textarea { 
-            background: #f8fafc !important; 
-            border-bottom: 2px solid #e2e8f0 !important;
-            color: #0f172a !important;
-        }
-        .light-mode footer { background-color: #f8fafc !important; border-top: 1px solid #e2e8f0 !important; }
+        .light-mode input, .light-mode select, .light-mode textarea { background: #f8fafc !important; border-bottom: 2px solid #e2e8f0 !important; color: #0f172a !important; }
+        .light-mode footer { background-color: #f1f5f9 !important; border-top: 1px solid #e2e8f0 !important; }
 
         /* --- SWITCH THEME --- */
         .theme-switch { width: 54px; height: 28px; background: rgba(255,255,255,0.1); border-radius: 50px; position: relative; cursor: pointer; border: 1px solid rgba(255,255,255,0.2); transition: all 0.3s ease; }
@@ -61,10 +49,7 @@
         .text-gradient { background: linear-gradient(to right, #a3e635, #ffffff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }
         
-        input, select, textarea {
-            transition: all 0.3s ease;
-            border-bottom: 1px solid rgba(255,255,255,0.1) !important;
-        }
+        input, select, textarea { transition: all 0.3s ease; border-bottom: 1px solid rgba(255,255,255,0.1) !important; }
         input:focus { border-color: #a3e635 !important; }
         .step-badge { background: linear-gradient(135deg, #a3e635 0%, #65a30d 100%); box-shadow: 0 0 20px rgba(163,230,53,0.3); }
     </style>
@@ -109,31 +94,23 @@
     </nav>
 
     <main class="max-w-5xl mx-auto px-6 py-16">
-        
         <header class="text-center mb-24">
             <h1 class="font-title text-5xl md:text-7xl text-white font-bold mb-8 tracking-tighter uppercase italic leading-none">
                 Rejoindre le <span class="text-gradient">Réseau</span>
             </h1>
-            <div class="flex justify-center items-center gap-6 text-[10px] font-title text-slate-500 uppercase tracking-[0.2em]">
-                <span class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-acidGreen animate-pulse"></span> Serveurs Sécurisés</span>
-                <span class="opacity-20">|</span>
-                <span>Conformité RGPD</span>
-                <span class="opacity-20">|</span>
-                <span>Support Angers</span>
-            </div>
+            <p class="text-slate-500 uppercase tracking-[0.3em] text-[10px] font-bold italic">Formulaire d'inscription & Validation de compte</p>
         </header>
 
         <form action="#" class="grid lg:grid-cols-3 gap-12">
-            
             <div class="lg:col-span-2 space-y-12">
                 <section class="glass p-10 rounded-[3.5rem] relative overflow-hidden">
                     <div class="absolute top-0 right-0 p-8 opacity-10 font-title text-6xl text-white">01</div>
                     <div class="flex items-center gap-4 mb-10">
                         <div class="w-10 h-10 step-badge rounded-full flex items-center justify-center text-dark font-black">1</div>
-                        <h2 class="font-title text-white text-sm uppercase tracking-widest">Identité Entreprise</h2>
+                        <h2 class="font-title text-white text-sm uppercase tracking-widest">Entreprise</h2>
                     </div>
                     <div class="grid md:grid-cols-2 gap-x-10 gap-y-8">
-                        <input type="text" required placeholder="NOM DE LA SOCIÉTÉ" class="w-full bg-transparent py-3 outline-none font-bold text-white text-xs uppercase">
+                        <input type="text" required placeholder="RAISON SOCIALE" class="w-full bg-transparent py-3 outline-none font-bold text-white text-xs uppercase">
                         <input type="text" required placeholder="SIRET / TVA" class="w-full bg-transparent py-3 outline-none font-bold text-white text-xs">
                         <input type="text" required placeholder="ADRESSE DU SIÈGE" class="w-full bg-transparent py-3 outline-none font-bold text-white text-xs uppercase md:col-span-2">
                     </div>
@@ -143,11 +120,11 @@
                     <div class="absolute top-0 right-0 p-8 opacity-10 font-title text-6xl text-white">02</div>
                     <div class="flex items-center gap-4 mb-10">
                         <div class="w-10 h-10 step-badge rounded-full flex items-center justify-center text-dark font-black">2</div>
-                        <h2 class="font-title text-white text-sm uppercase tracking-widest">Administrateur</h2>
+                        <h2 class="font-title text-white text-sm uppercase tracking-widest">Coordonnées</h2>
                     </div>
                     <div class="grid md:grid-cols-2 gap-x-10 gap-y-8">
                         <input type="text" required placeholder="PRÉNOM ET NOM" class="w-full bg-transparent py-3 outline-none font-bold text-white text-xs uppercase">
-                        <input type="email" required placeholder="EMAIL@ENTREPRISE.COM" class="w-full bg-transparent py-3 outline-none font-bold text-white text-xs">
+                        <input type="email" required placeholder="VOTRE EMAIL PROFESSIONNEL" class="w-full bg-transparent py-3 outline-none font-bold text-white text-xs uppercase border-b-2 border-acidGreen">
                         <input type="password" required placeholder="MOT DE PASSE" class="w-full bg-transparent py-3 outline-none font-bold text-white text-xs">
                         <input type="tel" required placeholder="TÉLÉPHONE DIRECT" class="w-full bg-transparent py-3 outline-none font-bold text-white text-xs">
                     </div>
@@ -156,16 +133,14 @@
 
             <aside class="space-y-8">
                 <div class="glass p-8 rounded-[3rem] border-t-4 border-acidGreen sticky top-24">
-                    <h2 class="font-title text-white text-[10px] uppercase tracking-widest mb-8">Paiement Sécurisé</h2>
+                    <h2 class="font-title text-white text-[10px] uppercase tracking-widest mb-8">Paiement</h2>
                     
                     <div class="space-y-4 mb-10">
                         <div @click="plan = 'starter'" :class="plan === 'starter' ? 'border-acidGreen bg-acidGreen/5' : 'border-white/5'" class="p-4 border rounded-2xl cursor-pointer transition">
-                            <span class="text-[10px] font-black uppercase text-white">Starter Pack</span>
-                            <div class="text-xs font-bold text-acidGreen">19€<span class="text-[8px] opacity-50">/m</span></div>
+                            <span class="text-[10px] font-black uppercase text-white">Starter (19€/m)</span>
                         </div>
                         <div @click="plan = 'business'" :class="plan === 'business' ? 'border-acidGreen bg-acidGreen/5' : 'border-white/5'" class="p-4 border rounded-2xl cursor-pointer transition">
-                            <span class="text-[10px] font-black uppercase text-white">Business Elite</span>
-                            <div class="text-xs font-bold text-acidGreen">49€<span class="text-[8px] opacity-50">/m</span></div>
+                            <span class="text-[10px] font-black uppercase text-white">Elite (49€/m)</span>
                         </div>
                     </div>
 
@@ -177,8 +152,8 @@
                         </div>
                     </div>
 
-                    <button type="submit" class="w-full mt-10 py-5 bg-acidGreen text-dark font-black font-title text-[10px] uppercase rounded-2xl hover:bg-white transition-all shadow-2xl">
-                        Valider mon inscription
+                    <button type="submit" class="w-full mt-10 py-5 bg-acidGreen text-dark font-black font-title text-[10px] uppercase rounded-2xl hover:bg-white transition-all">
+                        Valider mon compte
                     </button>
                 </div>
             </aside>
@@ -194,7 +169,7 @@
                         <div class="w-5 h-5 bg-acidGreen rounded-sm rotate-45"></div>
                         <span class="font-title text-acidGreen text-lg uppercase tracking-tighter">GEOPTIME</span>
                     </div>
-                    <p class="text-slate-500 text-[11px] leading-relaxed uppercase">L'intelligence géographique angevine au service de la performance commerciale.</p>
+                    <p class="text-slate-500 text-[11px] leading-relaxed uppercase">L'intelligence géographique angevine au service de la performance.</p>
                     <div class="flex gap-4">
                         <a href="#" class="w-8 h-8 glass rounded-full flex items-center justify-center hover:bg-acidGreen transition text-[10px]">LN</a>
                         <a href="#" class="w-8 h-8 glass rounded-full flex items-center justify-center hover:bg-acidGreen transition text-[10px]">X</a>
@@ -202,15 +177,14 @@
                 </div>
                 <div class="space-y-6">
                     <h4 class="font-title text-[10px] text-acidGreen uppercase tracking-widest">Navigation</h4>
-                    <div class="grid grid-cols-2 gap-x-4 gap-y-2 text-[11px] font-black uppercase text-slate-500 tracking-widest">
+                    <div class="grid grid-cols-2 gap-2 text-[11px] font-black uppercase text-slate-500 tracking-widest">
                         <a href="index.html#mission" class="hover:text-acidGreen">Mission</a>
                         <a href="index.html#performance" class="hover:text-acidGreen">Performance</a>
-                        <a href="index.html#solution" class="hover:text-acidGreen">Solution</a>
                         <a href="index.html#tarifs" class="hover:text-acidGreen">Tarifs</a>
                     </div>
                 </div>
                 <div class="space-y-6">
-                    <h4 class="font-title text-[10px] text-acidGreen uppercase tracking-widest">Contact</h4>
+                    <h4 class="font-title text-[10px] text-acidGreen uppercase tracking-widest">Contact Direct</h4>
                     <ul class="text-[11px] text-slate-400 space-y-3 font-bold uppercase">
                         <li>✉ contact@geoptime.fr</li>
                         <li>☎ 02 41 00 00 00</li>
