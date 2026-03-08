@@ -96,9 +96,9 @@
     <main class="max-w-5xl mx-auto px-6 py-16">
         <header class="text-center mb-24">
             <h1 class="font-title text-5xl md:text-7xl text-white font-bold mb-8 tracking-tighter uppercase italic leading-none">
-                Rejoindre le <span class="text-gradient">Réseau</span>
+                Ouverture <span class="text-gradient">Compte</span>
             </h1>
-            <p class="text-slate-500 uppercase tracking-[0.3em] text-[10px] font-bold italic">Formulaire d'inscription & Validation de compte</p>
+            <p class="text-slate-500 uppercase tracking-[0.3em] text-[10px] font-bold italic">Formulaire d'enregistrement professionnel GEOPTIME</p>
         </header>
 
         <form action="#" class="grid lg:grid-cols-3 gap-12">
@@ -132,9 +132,8 @@
             </div>
 
             <aside class="space-y-8">
-                <div class="glass p-8 rounded-[3rem] border-t-4 border-acidGreen sticky top-24">
+                <div class="glass p-8 rounded-[3rem] border-t-4 border-acidGreen sticky top-24 shadow-2xl">
                     <h2 class="font-title text-white text-[10px] uppercase tracking-widest mb-8">Paiement</h2>
-                    
                     <div class="space-y-4 mb-10">
                         <div @click="plan = 'starter'" :class="plan === 'starter' ? 'border-acidGreen bg-acidGreen/5' : 'border-white/5'" class="p-4 border rounded-2xl cursor-pointer transition">
                             <span class="text-[10px] font-black uppercase text-white">Starter (19€/m)</span>
@@ -143,7 +142,6 @@
                             <span class="text-[10px] font-black uppercase text-white">Elite (49€/m)</span>
                         </div>
                     </div>
-
                     <div class="space-y-4">
                         <input type="text" placeholder="NUMÉRO DE CARTE" class="w-full bg-transparent py-3 outline-none text-white text-xs tracking-widest">
                         <div class="grid grid-cols-2 gap-4">
@@ -151,7 +149,6 @@
                             <input type="text" placeholder="CVC" class="bg-transparent py-3 outline-none text-white text-xs text-center">
                         </div>
                     </div>
-
                     <button type="submit" class="w-full mt-10 py-5 bg-acidGreen text-dark font-black font-title text-[10px] uppercase rounded-2xl hover:bg-white transition-all">
                         Valider mon compte
                     </button>
@@ -171,31 +168,51 @@
                     </div>
                     <p class="text-slate-500 text-[11px] leading-relaxed uppercase">L'intelligence géographique angevine au service de la performance.</p>
                     <div class="flex gap-4">
-                        <a href="#" class="w-8 h-8 glass rounded-full flex items-center justify-center hover:bg-acidGreen transition text-[10px]">LN</a>
-                        <a href="#" class="w-8 h-8 glass rounded-full flex items-center justify-center hover:bg-acidGreen transition text-[10px]">X</a>
+                        <a href="#" class="w-9 h-9 glass rounded-full flex items-center justify-center hover:bg-acidGreen transition text-[10px] group">LN</a>
+                        <a href="#" class="w-9 h-9 glass rounded-full flex items-center justify-center hover:bg-acidGreen transition text-[10px] group">X</a>
                     </div>
                 </div>
+
                 <div class="space-y-6">
                     <h4 class="font-title text-[10px] text-acidGreen uppercase tracking-widest">Navigation</h4>
-                    <div class="grid grid-cols-2 gap-2 text-[11px] font-black uppercase text-slate-500 tracking-widest">
-                        <a href="index.html#mission" class="hover:text-acidGreen">Mission</a>
-                        <a href="index.html#performance" class="hover:text-acidGreen">Performance</a>
-                        <a href="index.html#tarifs" class="hover:text-acidGreen">Tarifs</a>
+                    <div class="grid grid-cols-2 gap-x-4 gap-y-2 text-[11px] font-black uppercase text-slate-500 tracking-widest">
+                        <a href="index.html#mission" class="hover:text-acidGreen transition">Mission</a>
+                        <a href="index.html#performance" class="hover:text-acidGreen transition">Performance</a>
+                        <a href="index.html#solution" class="hover:text-acidGreen transition">Solution</a>
+                        <a href="index.html#demo-video" class="hover:text-acidGreen transition">Démos</a>
+                        <a href="index.html#Avis" class="hover:text-acidGreen transition">Avis</a>
+                        <a href="index.html#equipe" class="hover:text-acidGreen transition">Equipe</a>
+                        <a href="index.html#tarifs" class="hover:text-acidGreen transition">Tarifs</a>
+                        <a href="index.html#faq" class="hover:text-acidGreen transition">Support</a>
                     </div>
                 </div>
+
                 <div class="space-y-6">
                     <h4 class="font-title text-[10px] text-acidGreen uppercase tracking-widest">Contact Direct</h4>
-                    <ul class="text-[11px] text-slate-400 space-y-3 font-bold uppercase">
+                    <ul class="text-[11px] text-slate-400 space-y-3 font-bold uppercase tracking-tighter">
                         <li>✉ contact@geoptime.fr</li>
                         <li>☎ 02 41 00 00 00</li>
                         <li>📍 Angers, France</li>
                     </ul>
                 </div>
+
                 <div class="space-y-6">
                     <h4 class="font-title text-[10px] text-acidGreen uppercase tracking-widest">Mobile MVP</h4>
                     <div class="flex flex-col gap-3">
-                        <div class="glass px-5 py-2 rounded-xl text-[10px] uppercase font-bold text-center">App Store</div>
-                        <div class="glass px-5 py-2 rounded-xl text-[10px] uppercase font-bold text-center">Google Play</div>
+                        <div class="glass px-5 py-3 rounded-2xl flex items-center gap-3 cursor-pointer hover:border-acidGreen/50 transition-all group">
+                            <span class="text-xl group-hover:scale-110 transition">🍎</span>
+                            <div class="text-left leading-none font-bold uppercase">
+                                <p class="text-[7px] text-slate-500 mb-1">Download on</p>
+                                <p class="text-[11px]">App Store</p>
+                            </div>
+                        </div>
+                        <div class="glass px-5 py-3 rounded-2xl flex items-center gap-3 cursor-pointer hover:border-acidGreen/50 transition-all group">
+                            <span class="text-xl group-hover:scale-110 transition">🤖</span>
+                            <div class="text-left leading-none font-bold uppercase">
+                                <p class="text-[7px] text-slate-500 mb-1">Get it on</p>
+                                <p class="text-[11px]">Google Play</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
