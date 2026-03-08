@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plans & Tarification — GEOPTIME</title>
+    <title>Paiement & Configuration — GEOPTIME</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
@@ -26,33 +26,36 @@
         .cursor-hover { transform: translate(-50%, -50%) scale(1.5) !important; background-color: rgba(163, 230, 53, 0.15); }
         
         body { 
-            background-color: #050505; 
-            color: #94a3b8; 
-            font-family: 'Inter', sans-serif;
+            background-color: #050505; color: #94a3b8; font-family: 'Inter', sans-serif;
             background-image: radial-gradient(circle at 50% -20%, #1a1a1a 0%, #050505 100%);
-            transition: all 0.4s ease;
         }
 
-        /* --- MODE CLAIR TOTAL (PURE WHITE) --- */
+        /* --- MODE CLAIR REVISITÉ --- */
         .light-mode { background-color: #ffffff !important; color: #1e293b !important; background-image: none !important; }
         .light-mode .glass { background: #f8fafc !important; border: 1px solid #e2e8f0 !important; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05) !important; }
         .light-mode h1, .light-mode h2, .light-mode h3 { color: #0f172a !important; }
+        .light-mode input, .light-mode select, .light-mode textarea { background: #ffffff !important; border-bottom: 2px solid #e2e8f0 !important; color: #0f172a !important; }
         .light-mode footer { background-color: #f1f5f9 !important; border-top: 1px solid #e2e8f0 !important; }
 
-        /* --- SWITCH THEME --- */
         .theme-switch { width: 54px; height: 28px; background: rgba(255,255,255,0.1); border-radius: 50px; position: relative; cursor: pointer; border: 1px solid rgba(255,255,255,0.2); transition: all 0.3s ease; }
         .light-mode .theme-switch { background: #e2e8f0; border-color: #cbd5e1; }
         .switch-dot { width: 22px; height: 22px; background: #a3e635; border-radius: 50%; position: absolute; top: 2px; left: 3px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: flex; align-items: center; justify-content: center; font-size: 11px; }
         .switch-active { transform: translateX(25px); background: #0f172a; color: white; }
 
-        .text-gradient { background: linear-gradient(to right, #a3e635, #ffffff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .font-title { font-family: 'Syncopate', sans-serif; }
         .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }
-        .hover-lift:hover { transform: translateY(-10px) scale(1.02); }
+        .text-gradient { background: linear-gradient(to right, #a3e635, #ffffff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        input, textarea { transition: all 0.3s ease; border-bottom: 1px solid rgba(255,255,255,0.1) !important; }
+        input:focus, textarea:focus { border-color: #a3e635 !important; }
     </style>
 </head>
 
 <body class="antialiased selection:bg-acidGreen selection:text-dark" 
-      x-data="{ darkMode: localStorage.getItem('theme') === 'light' ? false : true }" 
+      x-data="{ 
+        darkMode: localStorage.getItem('theme') === 'light' ? false : true,
+        plan: new URLSearchParams(window.location.search).get('plan') || 'starter'
+      }" 
       x-init="$watch('darkMode', val => localStorage.setItem('theme', val ? 'dark' : 'light'))"
       :class="{ 'light-mode': !darkMode }">
 
@@ -65,7 +68,6 @@
                 <div class="w-6 h-6 bg-acidGreen rounded-sm rotate-45"></div>
                 <span class="font-title text-acidGreen text-lg uppercase tracking-tighter">GEOPTIME</span>
             </a>
-
             <div class="hidden lg:flex gap-6 text-[10px] font-bold uppercase tracking-widest italic">
                 <a href="index.html#mission" class="hover:text-acidGreen transition">Mission</a>
                 <a href="index.html#performance" class="hover:text-acidGreen transition">Performance</a>
@@ -73,7 +75,6 @@
                 <a href="index.html#tarifs" class="hover:text-acidGreen transition">Tarifs</a>
                 <a href="index.html#faq" class="hover:text-acidGreen transition">Support</a>
             </div>
-
             <div class="flex items-center gap-6">
                 <div class="theme-switch" @click="darkMode = !darkMode">
                     <div class="switch-dot" :class="{'switch-active': !darkMode}">
@@ -81,126 +82,104 @@
                         <span x-show="!darkMode">☀️</span>
                     </div>
                 </div>
-                <a href="contact.html" class="bg-acidGreen text-dark px-6 py-2 rounded-full font-black text-[10px] uppercase hover:bg-white transition">S'inscrire</a>
+                <a href="index.html" class="bg-white text-dark px-6 py-2 rounded-full font-black text-[10px] uppercase hover:bg-acidGreen transition">Retour</a>
             </div>
         </div>
     </nav>
 
-    <main class="max-w-7xl mx-auto px-6 py-20">
-        
-        <header class="text-center mb-32">
-            <h1 class="font-title text-5xl md:text-8xl text-white font-bold mb-8 tracking-tighter uppercase italic leading-none">
-                Choisir son <span class="text-gradient">Impact</span>
+    <main class="max-w-5xl mx-auto px-6 py-16">
+        <header class="text-center mb-20">
+            <h1 class="font-title text-4xl md:text-6xl text-white font-bold mb-6 tracking-tighter uppercase italic leading-none">
+                Finaliser <span class="text-gradient">l'Accès</span>
             </h1>
-            <p class="text-slate-500 uppercase tracking-[0.3em] text-[11px] font-bold italic">Solutions d'optimisation sans engagement — Lancement Fin 2026</p>
+            <p class="text-slate-500 uppercase tracking-[0.3em] text-[10px] font-bold italic">Configuration du compte professionnel GEOPTIME</p>
         </header>
 
-        <div class="grid lg:grid-cols-3 gap-8 mb-40">
-            
-            <div class="glass p-10 rounded-[3.5rem] flex flex-col hover-lift transition-all duration-500">
-                <h3 class="font-title text-[10px] text-slate-500 uppercase tracking-widest mb-4">Indépendants</h3>
-                <h2 class="font-title text-2xl text-white uppercase italic mb-8">Starter Pack</h2>
-                <div class="text-5xl font-black text-white mb-10 italic">19€<span class="text-sm opacity-40 font-normal">/mois</span></div>
-                
-                <ul class="space-y-5 mb-12 flex-grow">
-                    <li class="flex items-center gap-3 text-xs uppercase font-bold tracking-tighter"><span class="text-acidGreen">✓</span> 15 adresses par tournée</li>
-                    <li class="flex items-center gap-3 text-xs uppercase font-bold tracking-tighter"><span class="text-acidGreen">✓</span> Importation Excel / CSV</li>
-                    <li class="flex items-center gap-3 text-xs uppercase font-bold tracking-tighter"><span class="text-acidGreen">✓</span> Carte interactive illimitée</li>
-                    <li class="flex items-center gap-3 text-xs uppercase font-bold tracking-tighter"><span class="text-acidGreen">✓</span> Synchro Waze & Google Maps</li>
-                </ul>
+        <form class="grid lg:grid-cols-3 gap-12">
+            <div class="lg:col-span-2 space-y-12">
+                <section class="glass p-10 rounded-[3rem] space-y-8 shadow-xl">
+                    <h2 class="font-title text-white text-xs uppercase tracking-widest"><span class="text-acidGreen">01.</span> Informations Entreprise</h2>
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <input type="text" placeholder="RAISON SOCIALE" class="w-full bg-transparent py-4 outline-none font-bold uppercase text-xs">
+                        <input type="text" placeholder="NUMÉRO SIRET" class="w-full bg-transparent py-4 outline-none font-bold text-xs">
+                        <input type="email" placeholder="EMAIL PROFESSIONNEL" class="w-full bg-transparent py-4 outline-none font-bold uppercase text-xs md:col-span-2 border-b-2 border-acidGreen/30">
+                    </div>
+                </section>
 
-                <a href="contact.html?plan=starter" class="block text-center py-5 border border-white/10 rounded-2xl font-title text-[9px] uppercase hover:bg-white hover:text-dark transition">Démarrer maintenant</a>
+                <section x-show="plan !== 'corporate'" x-transition class="glass p-10 rounded-[3rem] space-y-8 border-l-4 border-acidGreen shadow-xl">
+                    <h2 class="font-title text-white text-xs uppercase tracking-widest"><span class="text-acidGreen">02.</span> Paiement Sécurisé</h2>
+                    <div class="space-y-6">
+                        <input type="text" placeholder="NUMÉRO DE CARTE BANCAIRE" class="w-full bg-transparent py-4 outline-none font-bold text-xs tracking-[0.3em]">
+                        <div class="grid grid-cols-2 gap-8">
+                            <input type="text" placeholder="MM / YY" class="bg-transparent py-4 outline-none font-bold text-xs text-center">
+                            <input type="text" placeholder="CVC" class="bg-transparent py-4 outline-none font-bold text-xs text-center">
+                        </div>
+                    </div>
+                </section>
+
+                <section x-show="plan === 'corporate'" x-transition class="glass p-10 rounded-[3rem] space-y-8 border-l-4 border-white/20 shadow-xl">
+                    <h2 class="font-title text-white text-xs uppercase tracking-widest"><span class="text-white opacity-50">02.</span> Demande de Cotisation</h2>
+                    <p class="text-xs text-slate-500 uppercase font-bold italic">Une flotte de grande envergure nécessite un paramétrage sur-mesure de nos algorithmes.</p>
+                    <textarea placeholder="DÉCRIVEZ VOTRE BESOIN (NOMBRE DE VÉHICULES, CRM UTILISÉ...)" class="w-full bg-transparent py-4 outline-none font-bold text-xs h-32 uppercase"></textarea>
+                </section>
             </div>
 
-            <div class="bg-acidGreen p-12 rounded-[4rem] flex flex-col scale-105 shadow-[0_0_80px_rgba(163,230,53,0.15)] relative overflow-hidden">
-                <div class="absolute top-6 right-8 bg-dark text-acidGreen text-[7px] font-black px-4 py-1 rounded-full uppercase tracking-widest">Plus Populaire</div>
-                
-                <h3 class="font-title text-[10px] text-dark/50 uppercase tracking-widest mb-4">Équipes Commerciales</h3>
-                <h2 class="font-title text-3xl text-dark font-black uppercase italic mb-8">Elite Business</h2>
-                <div class="text-6xl font-black text-dark mb-10 italic">49€<span class="text-sm opacity-60 font-normal">/mois</span></div>
-                
-                <ul class="space-y-5 mb-12 flex-grow">
-                    <li class="flex items-center gap-3 text-xs uppercase font-black text-dark"><span class="opacity-40">★</span> Optimisation d'arrêts illimitée</li>
-                    <li class="flex items-center gap-3 text-xs uppercase font-black text-dark"><span class="opacity-40">★</span> Gestion des fenêtres horaires</li>
-                    <li class="flex items-center gap-3 text-xs uppercase font-black text-dark"><span class="opacity-40">★</span> Calcul des temps de pause</li>
-                    <li class="flex items-center gap-3 text-xs uppercase font-black text-dark"><span class="opacity-40">★</span> Rapport RSE & Économie CO2</li>
-                    <li class="flex items-center gap-3 text-xs uppercase font-black text-dark"><span class="opacity-40">★</span> Support prioritaire 24/7</li>
-                </ul>
+            <aside class="space-y-6">
+                <div class="glass p-8 rounded-[3rem] sticky top-10 shadow-2xl border-t-2 border-acidGreen/20">
+                    <h3 class="font-title text-[10px] text-slate-500 uppercase mb-8 italic">Votre Sélection</h3>
+                    
+                    <div class="space-y-4 mb-10">
+                        <div @click="plan = 'starter'" :class="plan === 'starter' ? 'border-acidGreen bg-acidGreen/5' : 'opacity-30'" class="p-4 border border-white/10 rounded-2xl cursor-pointer transition-all">
+                            <div class="flex justify-between items-center">
+                                <span class="text-[10px] font-black uppercase">Starter</span>
+                                <span class="text-xs font-bold text-acidGreen">19€<span class="text-[8px] opacity-50">/m</span></span>
+                            </div>
+                        </div>
+                        <div @click="plan = 'business'" :class="plan === 'business' ? 'border-acidGreen bg-acidGreen/5' : 'opacity-30'" class="p-4 border border-white/10 rounded-2xl cursor-pointer transition-all">
+                            <div class="flex justify-between items-center">
+                                <span class="text-[10px] font-black uppercase">Business Elite</span>
+                                <span class="text-xs font-bold text-acidGreen">49€<span class="text-[8px] opacity-50">/m</span></span>
+                            </div>
+                        </div>
+                        <div @click="plan = 'corporate'" :class="plan === 'corporate' ? 'border-white bg-white/5' : 'opacity-30'" class="p-4 border border-white/10 rounded-2xl cursor-pointer transition-all">
+                            <div class="flex justify-between items-center">
+                                <span class="text-[10px] font-black uppercase">Corporate</span>
+                                <span class="text-xs font-bold italic">DEVIS</span>
+                            </div>
+                        </div>
+                    </div>
 
-                <a href="contact.html?plan=business" class="block text-center py-6 bg-dark text-white rounded-2xl font-title text-[10px] uppercase hover:scale-95 transition shadow-2xl">Essai gratuit 14 jours</a>
-            </div>
+                    <div class="pt-6 border-t border-white/5 space-y-4 mb-10">
+                        <div class="flex justify-between text-[10px] uppercase font-black italic">
+                            <span>Montant Total</span>
+                            <span class="text-acidGreen text-2xl" x-text="plan === 'starter' ? '19€' : (plan === 'business' ? '49€' : '—')"></span>
+                        </div>
+                        <p class="text-[8px] text-slate-500 uppercase font-bold" x-show="plan !== 'corporate'">Activation immédiate après validation.</p>
+                    </div>
 
-            <div class="glass p-10 rounded-[3.5rem] flex flex-col hover-lift transition-all duration-500">
-                <h3 class="font-title text-[10px] text-slate-500 uppercase tracking-widest mb-4">Grandes Flottes</h3>
-                <h2 class="font-title text-2xl text-white uppercase italic mb-8">Corporate</h2>
-                <div class="text-4xl font-black text-white mb-10 italic uppercase">Sur Devis</div>
-                
-                <ul class="space-y-5 mb-12 flex-grow">
-                    <li class="flex items-center gap-3 text-xs uppercase font-bold tracking-tighter"><span class="text-acidGreen">✓</span> Dashboard Manager (Suivi équipe)</li>
-                    <li class="flex items-center gap-3 text-xs uppercase font-bold tracking-tighter"><span class="text-acidGreen">✓</span> Intégration API CRM & ERP</li>
-                    <li class="flex items-center gap-3 text-xs uppercase font-bold tracking-tighter"><span class="text-acidGreen">✓</span> Statistiques de flotte avancées</li>
-                    <li class="flex items-center gap-3 text-xs uppercase font-bold tracking-tighter"><span class="text-acidGreen">✓</span> Formation personnalisée</li>
-                </ul>
-
-                <a href="contact.html?plan=corporate" class="block text-center py-5 border border-white/10 rounded-2xl font-title text-[9px] uppercase hover:bg-white hover:text-dark transition">Contacter la vente</a>
-            </div>
-        </div>
-
-        <section class="mb-40 overflow-x-auto">
-            <h2 class="font-title text-xl text-white uppercase italic mb-16 border-l-4 border-acidGreen pl-6">Comparatif Technique</h2>
-            <table class="w-full text-left border-collapse min-w-[600px]">
-                <thead>
-                    <tr class="border-b border-white/5 font-title text-[9px] text-slate-500 uppercase">
-                        <th class="py-6 px-4">Fonctionnalités</th>
-                        <th class="py-6 px-4">Starter</th>
-                        <th class="py-6 px-4 text-acidGreen">Elite</th>
-                        <th class="py-6 px-4">Corporate</th>
-                    </tr>
-                </thead>
-                <tbody class="text-[11px] uppercase font-bold italic tracking-tighter">
-                    <tr class="border-b border-white/5 hover:bg-white/[0.02] transition">
-                        <td class="py-6 px-4 text-slate-400">Algorithme d'optimisation</td>
-                        <td class="py-6 px-4">Standard</td>
-                        <td class="py-6 px-4">Avancé</td>
-                        <td class="py-6 px-4">Personnalisé</td>
-                    </tr>
-                    <tr class="border-b border-white/5 hover:bg-white/[0.02] transition">
-                        <td class="py-6 px-4 text-slate-400">Nombre d'arrêts max / jour</td>
-                        <td class="py-6 px-4">15</td>
-                        <td class="py-6 px-4 text-acidGreen">Illimité</td>
-                        <td class="py-6 px-4">Illimité</td>
-                    </tr>
-                    <tr class="border-b border-white/5 hover:bg-white/[0.02] transition">
-                        <td class="py-6 px-4 text-slate-400">Support Client</td>
-                        <td class="py-6 px-4">Email</td>
-                        <td class="py-6 px-4">Chat 24/7</td>
-                        <td class="py-6 px-4">Dédié (Angers)</td>
-                    </tr>
-                    <tr class="border-b border-white/5 hover:bg-white/[0.02] transition">
-                        <td class="py-6 px-4 text-slate-400">Hébergement & Sécurité</td>
-                        <td class="py-6 px-4">Shared</td>
-                        <td class="py-6 px-4">Isolated</td>
-                        <td class="py-6 px-4">Private Cloud</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+                    <button type="submit" class="w-full py-6 bg-acidGreen text-dark font-black font-title text-[10px] uppercase rounded-2xl hover:bg-white transition-all shadow-2xl">
+                        <span x-text="plan === 'corporate' ? 'Envoyer la demande' : 'Confirmer le paiement'"></span>
+                    </button>
+                </div>
+            </aside>
+        </form>
     </main>
 
     <footer class="pt-24 pb-12 bg-dark border-t border-white/5 relative overflow-hidden transition-all duration-500">
         <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-acidGreen/30 to-transparent"></div>
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20 text-left font-bold italic">
+                
                 <div class="space-y-6">
                     <div class="flex items-center gap-2">
                         <div class="w-5 h-5 bg-acidGreen rounded-sm rotate-45"></div>
                         <span class="font-title text-acidGreen text-lg uppercase tracking-tighter">GEOPTIME</span>
                     </div>
-                    <p class="text-slate-500 text-[11px] leading-relaxed uppercase">L'intelligence géographique angevine au service de la performance commerciale.</p>
+                    <p class="text-slate-500 text-[11px] leading-relaxed uppercase">L'intelligence géographique angevine au service de la performance commerciale et de l'écologie.</p>
                     <div class="flex gap-4">
-                        <a href="#" class="w-9 h-9 glass rounded-full flex items-center justify-center hover:bg-acidGreen transition text-[10px] group">LN</a>
-                        <a href="#" class="w-9 h-9 glass rounded-full flex items-center justify-center hover:bg-acidGreen transition text-[10px] group">X</a>
-                        <a href="#" class="w-9 h-9 glass rounded-full flex items-center justify-center hover:bg-acidGreen transition text-[10px] group">IG</a>
+                        <a href="#" class="w-9 h-9 glass rounded-full flex items-center justify-center hover:bg-acidGreen transition text-[10px]">LN</a>
+                        <a href="#" class="w-9 h-9 glass rounded-full flex items-center justify-center hover:bg-acidGreen transition text-[10px]">X</a>
+                        <a href="#" class="w-9 h-9 glass rounded-full flex items-center justify-center hover:bg-acidGreen transition text-[10px]">IG</a>
                     </div>
                 </div>
 
@@ -231,17 +210,30 @@
                     <h4 class="font-title text-[10px] text-acidGreen uppercase tracking-widest">Mobile MVP</h4>
                     <div class="flex flex-col gap-3">
                         <div class="glass px-5 py-3 rounded-2xl flex items-center gap-3 cursor-pointer hover:border-acidGreen/50 transition-all group">
-                            <span class="text-xl group-hover:scale-110 transition">🍎</span>
-                            <div class="text-left leading-none font-bold uppercase"><p class="text-[7px] text-slate-500 mb-1">Download on</p><p class="text-[11px]">App Store</p></div>
+                            <span class="text-xl">🍎</span>
+                            <div class="text-left leading-none font-bold uppercase">
+                                <p class="text-[7px] text-slate-500 mb-1">Download on</p>
+                                <p class="text-[11px]">App Store</p>
+                            </div>
                         </div>
                         <div class="glass px-5 py-3 rounded-2xl flex items-center gap-3 cursor-pointer hover:border-acidGreen/50 transition-all group">
-                            <span class="text-xl group-hover:scale-110 transition">🤖</span>
-                            <div class="text-left leading-none font-bold uppercase"><p class="text-[7px] text-slate-500 mb-1">Get it on</p><p class="text-[11px]">Google Play</p></div>
+                            <span class="text-xl">🤖</span>
+                            <div class="text-left leading-none font-bold uppercase">
+                                <p class="text-[7px] text-slate-500 mb-1">Get it on</p>
+                                <p class="text-[11px]">Google Play</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <p class="font-title text-[8px] text-slate-700 tracking-[1em] uppercase text-center pt-8 border-t border-white/5">GEOPTIME © 2026 // FABRIQUÉ À ANGERS</p>
+            <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="font-title text-[8px] text-slate-700 tracking-[1em] uppercase">GEOPTIME © 2026 // FABRIQUÉ À ANGERS</p>
+                <div class="flex gap-8 text-[9px] font-black uppercase tracking-widest text-slate-700 italic">
+                    <a href="legal.html" class="hover:text-acidGreen transition">CGU</a>
+                    <a href="legal.html" class="hover:text-acidGreen transition">Confidentialité</a>
+                    <a href="legal.html" class="hover:text-acidGreen transition">Cookies</a>
+                </div>
+            </div>
         </div>
     </footer>
 
@@ -252,7 +244,7 @@
             dot.style.left = outline.style.left = `${e.clientX}px`;
             dot.style.top = outline.style.top = `${e.clientY}px`;
         });
-        const links = document.querySelectorAll('a, button, table tr, .glass, .theme-switch');
+        const links = document.querySelectorAll('a, button, input, .glass, .theme-switch');
         links.forEach(l => {
             l.addEventListener('mouseenter', () => outline.classList.add('cursor-hover'));
             l.addEventListener('mouseleave', () => outline.classList.remove('cursor-hover'));
