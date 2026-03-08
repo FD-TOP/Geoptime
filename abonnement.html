@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Finaliser votre Abonnement | Geoptime</title>
-    
+    <title>Paiement Sécurisé | Geoptime</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Inter:wght@300;500;700;800&display=swap" rel="stylesheet">
@@ -21,97 +20,84 @@
     </script>
     <style>
         body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
+            content: ""; position: fixed; inset: 0;
             background: radial-gradient(circle at 20% 30%, rgba(163,230,53,0.06), transparent 40%);
             z-index: -2;
         }
-        .light-mode { background-color: #f8fafc !important; color: #0f172a !important; }
-        .light-mode .glass { background: rgba(255, 255, 255, 0.8); border: 1px solid rgba(0, 0, 0, 0.05); color: #1e293b; }
         .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(30px); border: 1px solid rgba(255,255,255,0.08); }
-        input { transition: all 0.3s ease; }
-        input:focus { border-color: #a3e635 !important; box-shadow: 0 0 15px rgba(163,230,53,0.2); }
     </style>
 </head>
-<body class="bg-dark text-white font-sans min-h-screen flex flex-col" x-data="{ darkMode: true, plan: new URLSearchParams(window.location.search).get('plan') || 'starter' }" :class="{ 'light-mode': !darkMode }">
+<body class="bg-dark text-white font-sans min-h-screen flex flex-col" 
+      x-data="{ 
+        plan: new URLSearchParams(window.location.search).get('plan') || 'starter' 
+      }">
 
     <nav class="p-8">
-        <div class="max-w-7xl mx-auto flex justify-between items-center">
-            <div class="flex items-center gap-2">
-                <div class="w-6 h-6 bg-acidGreen rounded-sm rotate-45"></div>
-                <span class="font-title text-acidGreen tracking-tighter text-lg">GEOPTIME</span>
-            </div>
-            <button @click="darkMode = !darkMode" class="p-2 glass rounded-full hover:scale-110 transition">
-                <span x-show="darkMode">☀️</span>
-                <span x-show="!darkMode">🌙</span>
-            </button>
+        <div class="max-w-7xl mx-auto flex items-center gap-2">
+            <div class="w-6 h-6 bg-acidGreen rounded-sm rotate-45"></div>
+            <span class="font-title text-acidGreen tracking-tighter text-lg uppercase">GEOPTIME</span>
         </div>
     </nav>
 
     <main class="flex-1 flex items-center justify-center px-6 py-12">
         <div class="max-w-5xl w-full grid lg:grid-cols-2 gap-12">
             
-            <div class="space-y-8">
-                <h1 class="font-title text-3xl uppercase leading-tight">Finalisez votre <br><span class="text-acidGreen italic">Abonnement_</span></h1>
+            <div class="space-y-8" data-aos="fade-right">
+                <h1 class="font-title text-3xl uppercase italic tracking-tighter">Votre <span class="text-acidGreen">Commande_</span></h1>
                 
-                <div class="glass p-8 rounded-[3rem] border-l-4 border-acidGreen">
-                    <p class="text-[10px] font-black uppercase text-slate-500 tracking-widest mb-2">Offre sélectionnée</p>
-                    <div class="flex justify-between items-center">
-                        <h2 class="font-title text-xl uppercase italic" x-text="plan === 'business' ? 'Business Elite' : 'Starter Pack'"></h2>
-                        <span class="text-2xl font-black text-acidGreen" x-text="plan === 'business' ? '49€/m' : '19€/m'"></span>
-                    </div>
-                    <ul class="mt-6 space-y-3 text-xs text-slate-400">
-                        <li class="flex items-center gap-2">✓ Accès complet à l'application mobile [cite: 8, 45]</li>
-                        <li class="flex items-center gap-2">✓ Cartographie interactive illimitée [cite: 12, 14]</li>
-                        <li class="flex items-center gap-2">✓ Optimisation intelligente d'itinéraires [cite: 12]</li>
-                    </ul>
-                    <a href="index.html#tarifs" class="inline-block mt-6 text-[9px] font-bold uppercase tracking-widest border-b border-acidGreen text-acidGreen">Modifier mon choix</a>
-                </div>
+                <div class="glass p-10 rounded-[3rem] border-l-4 border-acidGreen relative overflow-hidden">
+                    <div class="relative z-10">
+                        <template x-if="plan === 'starter'">
+                            <div>
+                                <h2 class="font-title text-xl uppercase italic mb-2">Version Starter</h2>
+                                <div class="text-4xl font-black text-acidGreen mb-4 italic">19€<span class="text-sm opacity-50">/mois</span></div>
+                                <p class="text-[10px] text-slate-400 uppercase tracking-widest leading-relaxed">
+                                    Idéal pour les indépendants. Importation Excel et 15 arrêts optimisés par jour inclus[cite: 17, 18].
+                                </p>
+                            </div>
+                        </template>
 
-                <div class="text-[10px] text-slate-500 uppercase leading-relaxed tracking-widest">
-                    Paiement sécurisé par cryptage SSL 256-bits. <br>
-                    Aucune donnée bancaire n'est stockée sur nos serveurs.
+                        <template x-if="plan === 'business'">
+                            <div>
+                                <h2 class="font-title text-xl uppercase italic mb-2">Business Elite</h2>
+                                <div class="text-4xl font-black text-acidGreen mb-4 italic">49€<span class="text-sm opacity-50">/mois</span></div>
+                                <p class="text-[10px] text-slate-500 uppercase tracking-widest leading-relaxed">
+                                    Optimisation illimitée et support 24/7 pour les équipes performantes[cite: 22, 52].
+                                </p>
+                            </div>
+                        </template>
+
+                        <a href="index.html#tarifs" class="inline-block mt-8 text-[9px] font-bold text-acidGreen border-b border-acidGreen uppercase tracking-widest">Changer d'offre</a>
+                    </div>
                 </div>
             </div>
 
-            <div class="glass p-10 rounded-[4rem] relative overflow-hidden">
-                <div class="absolute top-0 right-0 w-32 h-32 bg-acidGreen/10 blur-[50px]"></div>
-                
-                <form class="space-y-6 uppercase tracking-widest text-[9px] font-bold">
+            <div class="glass p-10 rounded-[4rem] shadow-2xl">
+                <form class="space-y-6">
                     <div class="space-y-4">
-                        <label class="block text-slate-500">Informations Personnelles</label>
-                        <input type="text" placeholder="Nom complet sur la carte" class="w-full bg-white/5 border border-white/10 rounded-2xl py-4 px-6 outline-none focus:bg-white/10">
-                        <input type="email" placeholder="Email de facturation" class="w-full bg-white/5 border border-white/10 rounded-2xl py-4 px-6 outline-none focus:bg-white/10">
+                        <label class="block text-[10px] font-black uppercase text-slate-500 tracking-widest">Titulaire de la carte</label>
+                        <input type="text" placeholder="NOM PRÉNOM" class="w-full bg-white/5 border border-white/10 rounded-2xl py-4 px-6 outline-none focus:border-acidGreen transition font-title text-[9px]">
                     </div>
 
-                    <div class="space-y-4 pt-4">
-                        <label class="block text-slate-500">Détails de Paiement</label>
-                        <div class="relative">
-                            <input type="text" placeholder="Numéro de carte" class="w-full bg-white/5 border border-white/10 rounded-2xl py-4 px-6 outline-none focus:bg-white/10">
-                            <div class="absolute right-4 top-1/2 -translate-y-1/2 flex gap-2 opacity-50">
-                                <span class="text-lg">💳</span>
-                            </div>
-                        </div>
+                    <div class="space-y-4">
+                        <label class="block text-[10px] font-black uppercase text-slate-500 tracking-widest">Coordonnées bancaires</label>
+                        <input type="text" placeholder="0000 0000 0000 0000" class="w-full bg-white/5 border border-white/10 rounded-2xl py-4 px-6 outline-none focus:border-acidGreen transition font-title text-[9px]">
                         <div class="grid grid-cols-2 gap-4">
-                            <input type="text" placeholder="MM / YY" class="bg-white/5 border border-white/10 rounded-2xl py-4 px-6 outline-none">
-                            <input type="text" placeholder="CVC" class="bg-white/5 border border-white/10 rounded-2xl py-4 px-6 outline-none">
+                            <input type="text" placeholder="MM/YY" class="bg-white/5 border border-white/10 rounded-2xl py-4 px-6 outline-none focus:border-acidGreen transition text-[9px]">
+                            <input type="text" placeholder="CVC" class="bg-white/5 border border-white/10 rounded-2xl py-4 px-6 outline-none focus:border-acidGreen transition text-[9px]">
                         </div>
                     </div>
 
-                    <div class="pt-6">
-                        <button type="submit" class="w-full py-6 bg-acidGreen text-dark font-black font-title text-[11px] rounded-[2rem] hover:bg-white hover:scale-[1.02] transition-all duration-500 shadow-xl shadow-acidGreen/20">
-                            Confirmer le paiement
-                        </button>
-                    </div>
+                    <button type="submit" class="w-full py-6 bg-acidGreen text-dark font-black font-title text-[11px] rounded-[2rem] hover:bg-white transition-all uppercase tracking-widest shadow-xl shadow-acidGreen/20 mt-8">
+                        Valider le paiement
+                    </button>
                 </form>
             </div>
-
         </div>
     </main>
 
-    <footer class="p-8 text-center">
-        <p class="font-title text-[7px] text-slate-700 tracking-[1em] uppercase">GEOPTIME © 2026 // FABRIQUÉ À ANGERS [cite: 8, 43]</p>
+    <footer class="p-8 text-center border-t border-white/5">
+        <p class="font-title text-[7px] text-slate-800 tracking-[1em] uppercase">GEOPTIME © 2026 // FABRIQUÉ À ANGERS [cite: 43]</p>
     </footer>
 
 </body>
