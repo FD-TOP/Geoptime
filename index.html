@@ -82,12 +82,25 @@
         @keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
         .animate-scroll { animation: scroll 30s linear infinite; }
         .hover-lift:hover { transform: translateY(-6px); }
+
+        /* --- AJOUTS RESPONSIVE --- */
+        @media (max-width: 1024px) {
+            nav .hidden.md\:flex { display: none; } /* On cache le menu horizontal trop long */
+            nav .mobile-trigger { display: block; }
+            h1 { font-size: 2.5rem !important; }
+        }
+        @media (max-width: 768px) {
+            #cursor-dot, #cursor-outline { display: none; }
+            .glass { border-radius: 2rem !important; }
+            section { padding-top: 5rem; padding-bottom: 5rem; }
+        }
     </style>
 </head>
 <body class="bg-dark text-white font-sans overflow-x-hidden" 
     x-data="{ 
         darkMode: localStorage.getItem('theme') === 'light' ? false : true,
-        statut: new URLSearchParams(window.location.search).get('statut') 
+        statut: new URLSearchParams(window.location.search).get('statut'),
+        mobileMenu: false
     }" 
     x-init="$watch('darkMode', val => localStorage.setItem('theme', val ? 'dark' : 'light'))"
     :class="{ 'light-mode': !darkMode }">
@@ -102,7 +115,8 @@
                 <div class="w-6 h-6 bg-acidGreen rounded-sm rotate-45"></div>
                 <span class="font-title text-acidGreen tracking-tighter text-lg uppercase"><a href="#home">GEOPTIME</a></span>
             </div>
-            <div class="hidden md:flex gap-8 text-[10px] font-bold uppercase tracking-widest">
+            
+            <div class="hidden lg:flex gap-4 xl:gap-8 text-[10px] font-bold uppercase tracking-widest">
                 <a href="#mission" class="hover:text-acidGreen transition">Mission</a>
                 <a href="#performance" class="hover:text-acidGreen transition">Performance</a>
                 <a href="#solution" class="hover:text-acidGreen transition">Solution</a>
@@ -113,6 +127,7 @@
                 <a href="#faq" class="hover:text-acidGreen transition">Support</a>
                 <a href="contact.html" class="hover:text-acidGreen transition">Contact</a>
             </div>
+
             <div class="flex items-center gap-4">
                 <div class="theme-switch" @click="darkMode = !darkMode">
                     <div class="switch-dot" :class="{'switch-active': !darkMode}">
@@ -120,7 +135,23 @@
                         <span x-show="!darkMode">☀️</span>
                     </div>
                 </div>
+                <button @click="mobileMenu = !mobileMenu" class="lg:hidden text-acidGreen text-2xl">
+                    <span x-show="!mobileMenu">☰</span>
+                    <span x-show="mobileMenu">✕</span>
+                </button>
             </div>
+        </div>
+
+        <div x-show="mobileMenu" x-transition class="lg:hidden glass mt-2 rounded-2xl p-6 grid grid-cols-2 gap-4 text-[10px] font-bold uppercase text-center">
+            <a @click="mobileMenu = false" href="#mission">Mission</a>
+            <a @click="mobileMenu = false" href="#performance">Performance</a>
+            <a @click="mobileMenu = false" href="#solution">Solution</a>
+            <a @click="mobileMenu = false" href="#demo-video">Démos</a>
+            <a @click="mobileMenu = false" href="#Avis">Avis</a>
+            <a @click="mobileMenu = false" href="#equipe">Equipe</a>
+            <a @click="mobileMenu = false" href="#tarifs">Tarifs</a>
+            <a @click="mobileMenu = false" href="#faq">Support</a>
+            <a @click="mobileMenu = false" href="contact.html" class="col-span-2 text-acidGreen">Contact</a>
         </div>
     </nav>
 
@@ -192,13 +223,13 @@
                 <div class="glass p-8 rounded-[3rem] border-red-500/10">
                     <p class="text-[10px] font-black uppercase text-red-500 tracking-widest mb-6 italic">Sans Geoptime : Le chaos logistique</p>
                     <div class="aspect-video rounded-2xl overflow-hidden shadow-2xl">
-                        <video src="images/withoutgeoptime.mp4" class="w-full h-full object-cover mix-blend-luminosity" autoplay loop muted></video>
+                        <video src="images/withoutgeoptime.mp4" class="w-full h-full object-cover mix-blend-luminosity" autoplay loop muted playsinline></video>
                     </div>
                 </div>
                 <div class="glass p-8 rounded-[3rem] border-acidGreen/20">
                     <p class="text-[10px] font-black uppercase text-acidGreen tracking-widest mb-6 italic">Avec Geoptime : Flux optimisés</p>
                     <div class="aspect-video rounded-2xl overflow-hidden shadow-2xl">
-                        <video src="votre-video.mp4" class="w-full h-full object-cover" autoplay loop muted></video>
+                        <video src="votre-video.mp4" class="w-full h-full object-cover" autoplay loop muted playsinline></video>
                     </div>
                 </div>
             </div>
@@ -298,7 +329,7 @@
                 </ul>
                 <a href="abonnement.html?plan=starter" class="block py-5 rounded-3xl border border-white/10 font-bold uppercase text-[10px] hover:bg-white hover:text-dark transition">Sélectionner</a>
             </div>
-            <div class="bg-acidGreen p-16 rounded-[4.5rem] text-dark scale-110 shadow-3xl relative z-10">
+            <div class="bg-acidGreen p-16 rounded-[4.5rem] text-dark lg:scale-110 shadow-3xl relative z-10">
                 <div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-dark text-acidGreen text-[9px] font-black px-8 py-3 rounded-full uppercase tracking-widest">Recommandé</div>
                 <h3 class="font-title text-[10px] mb-8 opacity-60 tracking-widest uppercase">Business Elite</h3>
                 <div class="text-6xl font-black mb-6 italic">49€<span class="text-sm font-normal">/m</span></div>
@@ -324,6 +355,7 @@
         </div>
     </div>
 </section>
+
    <section id="faq" class="py-32 px-6" x-data="{ open: null }">
     <div class="max-w-4xl mx-auto">
         <h2 class="font-title text-3xl mb-16 text-center uppercase tracking-tighter">Support <span class="text-acidGreen">& FAQ_</span></h2>
@@ -372,6 +404,7 @@
                         <a href="#" class="hover:text-acidGreen transition">IG</a>
                     </div>
                 </div>
+                
                 <div class="space-y-6">
                     <h4 class="font-title text-[10px] text-acidGreen uppercase italic tracking-widest">Navigation</h4>
                     <div class="grid grid-cols-2 gap-x-4 gap-y-2 text-[11px] font-black uppercase tracking-widest text-slate-500">
@@ -384,6 +417,7 @@
                         <a href="#faq" class="hover:text-acidGreen transition">Support</a>
                     </div>
                 </div>
+
                 <div class="space-y-6">
                     <h4 class="font-title text-[10px] text-acidGreen uppercase italic tracking-widest">Contact Direct</h4>
                     <ul class="text-[11px] text-slate-400 space-y-3 font-bold italic uppercase tracking-tighter leading-relaxed">
@@ -419,8 +453,10 @@
         const dot = document.querySelector("#cursor-dot");
         const outline = document.querySelector("#cursor-outline");
         window.addEventListener("mousemove", (e) => {
-            dot.style.left = outline.style.left = `${e.clientX}px`;
-            dot.style.top = outline.style.top = `${e.clientY}px`;
+            if (window.innerWidth > 768) {
+                dot.style.left = outline.style.left = `${e.clientX}px`;
+                dot.style.top = outline.style.top = `${e.clientY}px`;
+            }
         });
         window.addEventListener('scroll', () => {
             document.getElementById('progressBar').style.width = `${(window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100}%`;
@@ -429,6 +465,3 @@
     </script>
 </body>
 </html>
-
-
-
