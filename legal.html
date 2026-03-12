@@ -33,7 +33,6 @@
             transition: background-color 0.4s ease, color 0.4s ease;
         }
 
-        /* --- MODE CLAIR TOTAL (PURE WHITE) --- */
         .light-mode { 
             background-color: #ffffff !important; 
             color: #1e293b !important;
@@ -49,7 +48,6 @@
         .light-mode .text-slate-400, .light-mode .text-slate-500 { color: #475569 !important; }
         .light-mode footer { background-color: #f1f5f9 !important; border-top: 1px solid #e2e8f0 !important; }
 
-        /* --- SWITCH THEME --- */
         .theme-switch { width: 54px; height: 28px; background: rgba(255,255,255,0.1); border-radius: 50px; position: relative; cursor: pointer; border: 1px solid rgba(255,255,255,0.2); }
         .light-mode .theme-switch { background: #e2e8f0; border-color: #cbd5e1; }
         .switch-dot { width: 22px; height: 22px; background: #a3e635; border-radius: 50%; position: absolute; top: 2px; left: 3px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: flex; align-items: center; justify-content: center; font-size: 11px; }
@@ -61,6 +59,11 @@
         .legal-card { border-left: 3px solid #a3e635; padding-left: 1.5rem; }
         h3 { color: white; font-weight: 800; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.1em; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
         h3::before { content: "//"; color: #a3e635; }
+
+        @media (max-width: 768px) {
+            html, body { cursor: auto; }
+            #cursor-dot, #cursor-outline { display: none; }
+        }
     </style>
 </head>
 
@@ -100,54 +103,83 @@
 
         <section id="cgu" class="mb-56">
             <div class="flex items-center gap-6 mb-16">
-                <h2 class="font-title text-4xl italic uppercase">01. CGU</h2>
+                <h2 class="font-title text-4xl italic uppercase text-white">01. CGU</h2>
                 <div class="h-px flex-1 bg-gradient-to-r from-acidGreen/40 to-transparent"></div>
             </div>
             <div class="glass p-8 md:p-16 rounded-[3rem] space-y-12 text-[14px] leading-relaxed">
                 <div class="legal-card">
                     <h3>Article 1 : Objet du service</h3>
-                    <p>Geoptime fournit une solution logicielle en mode SaaS permettant la visualisation de portefeuilles clients sur carte interactive et l'optimisation algorithmique de tournées commerciales.</p>
+                    <p>Geoptime fournit une solution logicielle en mode SaaS (Software as a Service) permettant la visualisation de portefeuilles clients sur carte interactive et l'optimisation algorithmique de tournées commerciales. Le service est strictement réservé à un usage professionnel.</p>
                 </div>
                 <div class="legal-card">
-                    <h3>Article 2 : Propriété Intellectuelle</h3>
-                    <p>L'architecture, les algorithmes de calcul multi-arrêts, les designs et codes sources sont la propriété exclusive de Geoptime. Toute reproduction est interdite.</p>
+                    <h3>Article 2 : Accès et Disponibilité</h3>
+                    <p>Nous nous efforçons de maintenir un taux de disponibilité (SLA) de 99,9%. Geoptime se réserve le droit d'interrompre l'accès pour des opérations de maintenance technique, généralement effectuées hors des heures de bureau (GMT+1) pour minimiser l'impact opérationnel.</p>
                 </div>
                 <div class="legal-card">
-                    <h3>Article 3 : Responsabilité</h3>
-                    <p>L'utilisateur est responsable de l'exactitude des données importées. Geoptime est un outil d'aide à la décision et ne remplace pas la vigilance du conducteur.</p>
+                    <h3>Article 3 : Propriété Intellectuelle</h3>
+                    <p>L'architecture, les algorithmes de calcul multi-arrêts, les designs et codes sources sont la propriété exclusive de Geoptime. Toute reproduction, extraction de données par "scraping" ou tentative d'ingénierie inverse est strictement interdite et fera l'objet de poursuites.</p>
+                </div>
+                <div class="legal-card">
+                    <h3>Article 4 : Responsabilité et Limitation</h3>
+                    <p>L'utilisateur est seul responsable de l'exactitude des données importées (fichiers CSV/Excel). Geoptime agit comme un outil d'aide à la décision. Nous ne saurions être tenus responsables des retards de livraison ou d'erreurs de navigation sur le terrain, la vigilance du conducteur restant primordiale.</p>
+                </div>
+                <div class="legal-card">
+                    <h3>Article 5 : Résiliation</h3>
+                    <p>En cas de non-respect des présentes conditions ou de défaut de paiement, Geoptime se réserve le droit de suspendre l'accès au compte pro après une mise en demeure restée infructueuse pendant 8 jours ouvrés.</p>
                 </div>
             </div>
         </section>
 
         <section id="privacy" class="mb-56">
             <div class="flex items-center gap-6 mb-16">
-                <h2 class="font-title text-4xl italic uppercase">02. Vie Privée</h2>
+                <h2 class="font-title text-4xl italic uppercase text-white">02. Vie Privée</h2>
                 <div class="h-px flex-1 bg-gradient-to-r from-acidGreen/40 to-transparent"></div>
             </div>
             <div class="glass p-8 md:p-16 rounded-[3rem] space-y-12 text-[14px] leading-relaxed">
                 <div class="legal-card">
                     <h3>Article 1 : Données collectées</h3>
-                    <p>Nous collectons les données de compte, les adresses clients importées et la position GPS en temps réel durant le guidage.</p>
+                    <p>Nous collectons les données strictement nécessaires au service : informations de compte (Email, Nom), données clients importées (Adresses, CA, Fréquence de visite) et données de géolocalisation en temps réel lors de l'utilisation de l'application mobile pour le guidage.</p>
                 </div>
                 <div class="legal-card">
-                    <h3>Article 2 : Sécurité (Sandboxing)</h3>
-                    <p>Les données sont hébergées en France (RGPD). Les fichiers clients sont isolés par entreprise via un système de "Sandboxing" pour garantir une étanchéité totale.</p>
+                    <h3>Article 2 : Finalité du traitement</h3>
+                    <p>Vos données ne sont jamais vendues à des tiers. Elles servent uniquement à : générer vos cartes, optimiser vos routes, et améliorer nos algorithmes de trafic via des données anonymisées et agrégées.</p>
+                </div>
+                <div class="legal-card">
+                    <h3>Article 3 : Sécurité (Sandboxing & Chiffrement)</h3>
+                    <p>Les données sont hébergées sur des serveurs sécurisés en France. Nous utilisons un système de "Sandboxing" garantissant que les données d'une entreprise sont totalement étanches vis-à-vis des autres utilisateurs. Toutes les communications transitent via le protocole TLS/SSL (HTTPS).</p>
+                </div>
+                <div class="legal-card">
+                    <h3>Article 4 : Vos Droits RGPD</h3>
+                    <p>Conformément au règlement européen, vous disposez d'un droit d'accès, de rectification, de portabilité et de suppression de vos données. Pour toute demande, contactez notre DPO à <strong>dpo@geoptime.fr</strong>. Nous nous engageons à répondre sous 72 heures.</p>
+                </div>
+                <div class="legal-card">
+                    <h3>Article 5 : Durée de conservation</h3>
+                    <p>Les données opérationnelles sont conservées pendant toute la durée de votre abonnement. En cas de résiliation, les données sont supprimées de nos serveurs actifs sous 30 jours, sauf obligation légale de conservation.</p>
                 </div>
             </div>
         </section>
 
         <section id="cookies" class="mb-56">
             <div class="flex items-center gap-6 mb-16">
-                <h2 class="font-title text-4xl italic uppercase">03. Cookies</h2>
+                <h2 class="font-title text-4xl italic uppercase text-white">03. Cookies</h2>
                 <div class="h-px flex-1 bg-gradient-to-r from-acidGreen/40 to-transparent"></div>
             </div>
             <div class="glass p-8 md:p-16 rounded-[3rem] space-y-12 text-[14px] leading-relaxed">
                 <div class="legal-card">
-                    <h3>Article 1 : Usage</h3>
-                    <p>Les cookies sécurisent votre connexion et mémorisent vos préférences d'affichage (Thème Sombre/Clair).</p>
+                    <h3>Article 1 : Cookies Essentiels</h3>
+                    <p>Ces cookies sont indispensables au fonctionnement de la plateforme. Ils permettent de maintenir votre session active, de sécuriser vos formulaires d'importation et de mémoriser vos préférences d'interface (mode sombre/clair).</p>
+                </div>
+                <div class="legal-card">
+                    <h3>Article 2 : Cookies de Performance</h3>
+                    <p>Nous utilisons des outils d'analyse (type Matomo ou Analytics anonymisé) pour comprendre comment vous interagissez avec nos cartes et identifier d'éventuels ralentissements d'affichage.</p>
+                </div>
+                <div class="legal-card">
+                    <h3>Article 3 : Gestion du consentement</h3>
+                    <p>Lors de votre première visite, vous avez la possibilité d'accepter ou de refuser les cookies non-essentiels. Vous pouvez modifier ce choix à tout moment via le bouton ci-dessous.</p>
                 </div>
                 <div class="bg-acidGreen/10 border border-acidGreen/20 p-8 rounded-2xl text-center">
-                    <button id="reset-cookies-btn" class="px-10 py-4 bg-acidGreen text-dark font-black text-[10px] uppercase rounded-full hover:scale-105 transition">Réinitialiser les préférences</button>
+                    <p class="text-[10px] uppercase font-bold text-acidGreen mb-6 tracking-widest italic">Gestion des jetons de session locale</p>
+                    <button id="reset-cookies-btn" class="px-10 py-4 bg-acidGreen text-dark font-black text-[10px] uppercase rounded-full hover:scale-105 transition shadow-lg shadow-acidGreen/20">Réinitialiser les préférences</button>
                 </div>
             </div>
         </section>
@@ -157,7 +189,6 @@
         <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-acidGreen/30 to-transparent"></div>
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20 text-left">
-                
                 <div class="space-y-6">
                     <div class="flex items-center gap-2">
                         <div class="w-5 h-5 bg-acidGreen rounded-sm rotate-45"></div>
@@ -185,11 +216,8 @@
                         <a href="index.html#mission" class="hover:text-acidGreen transition">Mission</a>
                         <a href="index.html#performance" class="hover:text-acidGreen transition">Performance</a>
                         <a href="index.html#solution" class="hover:text-acidGreen transition">Solution</a>
-                        <a href="index.html#demo-video" class="hover:text-acidGreen transition">Démos</a>
                         <a href="index.html#Avis" class="hover:text-acidGreen transition">Avis</a>
-                        <a href="index.html#equipe" class="hover:text-acidGreen transition">Equipe</a>
                         <a href="index.html#tarifs" class="hover:text-acidGreen transition">Tarifs</a>
-                        <a href="index.html#faq" class="hover:text-acidGreen transition">Support</a>
                     </div>
                 </div>
 
@@ -212,18 +240,11 @@
                                 <p class="text-[11px] font-bold uppercase">App Store</p>
                             </div>
                         </div>
-                        <div class="glass px-5 py-3 rounded-2xl flex items-center gap-3 cursor-pointer hover:border-acidGreen/50 transition-all group">
-                            <span class="text-xl group-hover:scale-110 transition">🤖</span>
-                            <div class="text-left leading-none">
-                                <p class="text-[7px] uppercase text-slate-500 mb-1">Get it on</p>
-                                <p class="text-[11px] font-bold uppercase">Google Play</p>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-center">
                 <p class="font-title text-[8px] text-slate-700 tracking-[1em] uppercase">GEOPTIME © 2026 // FABRIQUÉ À ANGERS</p>
                 <div class="flex gap-8 text-[9px] font-black uppercase tracking-widest text-slate-700 italic">
                     <a href="#cgu" class="hover:text-acidGreen transition">CGU</a>
@@ -238,8 +259,10 @@
         const dot = document.querySelector("#cursor-dot");
         const outline = document.querySelector("#cursor-outline");
         window.addEventListener("mousemove", (e) => {
-            dot.style.left = outline.style.left = `${e.clientX}px`;
-            dot.style.top = outline.style.top = `${e.clientY}px`;
+            if(window.innerWidth > 768) {
+                dot.style.left = outline.style.left = `${e.clientX}px`;
+                dot.style.top = outline.style.top = `${e.clientY}px`;
+            }
         });
         const links = document.querySelectorAll('a, button, .glass, .theme-switch');
         links.forEach(l => {
@@ -247,7 +270,7 @@
             l.addEventListener('mouseleave', () => outline.classList.remove('cursor-hover'));
         });
         document.getElementById("reset-cookies-btn").onclick = () => {
-            localStorage.removeItem("geoptime_consent");
+            alert("Préférences réinitialisées. Les cookies de session ont été purgés.");
             location.reload();
         };
     </script>
