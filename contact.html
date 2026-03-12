@@ -95,10 +95,6 @@
             </div>
         </div>
         <div x-show="mobileMenu" x-transition class="lg:hidden glass mt-2 rounded-2xl p-6 grid grid-cols-2 gap-4 text-[10px] font-bold uppercase text-center">
-            <a href="index.html#mission">Mission</a>
-            <a href="index.html#performance">Performance</a>
-            <a href="index.html#solution">Solution</a>
-            <a href="index.html#tarifs">Tarifs</a>
             <a href="index.html" class="col-span-2 text-acidGreen">Retour Accueil</a>
         </div>
     </nav>
@@ -137,33 +133,12 @@
                         <input type="email" required placeholder="VOTRE EMAIL PROFESSIONNEL" class="w-full bg-transparent py-3 outline-none font-bold text-white text-xs uppercase border-b-2 border-acidGreen">
                         <input type="password" required placeholder="MOT DE PASSE" class="w-full bg-transparent py-3 outline-none font-bold text-white text-xs">
                         <input type="tel" required placeholder="TÉLÉPHONE DIRECT" class="w-full bg-transparent py-3 outline-none font-bold text-white text-xs">
+                        <input type="textarea" required placeholder="sujet" class="w-full bg-transparent py-3 outline-none font-bold text-white text-xs">
+
                     </div>
                 </section>
             </div>
 
-            <aside class="space-y-8">
-                <div class="glass p-6 md:p-8 rounded-[2rem] md:rounded-[3rem] border-t-4 border-acidGreen sticky top-24 shadow-2xl">
-                    <h2 class="font-title text-white text-[10px] uppercase tracking-widest mb-8">Paiement</h2>
-                    <div class="space-y-3 md:space-y-4 mb-8 md:mb-10">
-                        <div @click="plan = 'starter'" :class="plan === 'starter' ? 'border-acidGreen bg-acidGreen/5' : 'border-white/5'" class="p-4 border rounded-2xl cursor-pointer transition">
-                            <span class="text-[10px] font-black uppercase text-white">Starter (19€/m)</span>
-                        </div>
-                        <div @click="plan = 'business'" :class="plan === 'business' ? 'border-acidGreen bg-acidGreen/5' : 'border-white/5'" class="p-4 border rounded-2xl cursor-pointer transition">
-                            <span class="text-[10px] font-black uppercase text-white">Elite (49€/m)</span>
-                        </div>
-                    </div>
-                    <div class="space-y-4">
-                        <input type="text" placeholder="NUMÉRO DE CARTE" class="w-full bg-transparent py-3 outline-none text-white text-xs tracking-widest">
-                        <div class="grid grid-cols-2 gap-4">
-                            <input type="text" placeholder="MM/YY" class="bg-transparent py-3 outline-none text-white text-xs text-center">
-                            <input type="text" placeholder="CVC" class="bg-transparent py-3 outline-none text-white text-xs text-center">
-                        </div>
-                    </div>
-                    <button type="submit" class="w-full mt-8 md:mt-10 py-5 bg-acidGreen text-dark font-black font-title text-[10px] uppercase rounded-2xl hover:bg-white transition-all shadow-xl">
-                        Valider mon compte
-                    </button>
-                </div>
-            </aside>
         </form>
     </main>
 
