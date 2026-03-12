@@ -13,7 +13,7 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    colors: { acidGreen: '#a3e635', dark: '#050505' },
+                    colors: { acidGreen: '#a3e635', dark: '#050505', glassWhite: 'rgba(255, 255, 255, 0.03)' },
                     fontFamily: { title: ['Syncopate', 'sans-serif'], sans: ['Inter', 'sans-serif'] }
                 }
             }
@@ -23,49 +23,41 @@
         html, body { cursor: none; }
         #cursor-dot { width: 6px; height: 6px; background-color: #a3e635; position: fixed; top: 0; left: 0; transform: translate(-50%, -50%); border-radius: 50%; z-index: 9999; pointer-events: none; }
         #cursor-outline { width: 34px; height: 34px; border: 2px solid #a3e635; position: fixed; top: 0; left: 0; transform: translate(-50%, -50%); border-radius: 50%; z-index: 9998; pointer-events: none; transition: all 0.15s ease-out; }
-        .cursor-hover { transform: translate(-50%, -50) scale(1.5) !important; background-color: rgba(163, 230, 53, 0.15); }
+        .cursor-hover { transform: translate(-50%, -50%) scale(1.8) !important; background-color: rgba(163, 230, 53, 0.1); border-color: transparent !important; }
         
         body { 
             background-color: #050505; 
             color: #94a3b8; 
             font-family: 'Inter', sans-serif;
             background-image: radial-gradient(circle at 50% -20%, #1a1a1a 0%, #050505 100%);
-            transition: all 0.4s ease;
         }
 
-        /* --- MODE CLAIR TOTAL (PURE WHITE) --- */
         .light-mode { background-color: #ffffff !important; color: #1e293b !important; background-image: none !important; }
         .light-mode .glass { background: #f8fafc !important; border: 1px solid #e2e8f0 !important; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05) !important; }
         .light-mode h1, .light-mode h2, .light-mode h3 { color: #0f172a !important; }
         .light-mode input, .light-mode select, .light-mode textarea { background: #f8fafc !important; border-bottom: 2px solid #e2e8f0 !important; color: #0f172a !important; }
         .light-mode footer { background-color: #f1f5f9 !important; border-top: 1px solid #e2e8f0 !important; }
 
-        /* --- SWITCH THEME --- */
-        .theme-switch { width: 54px; height: 28px; background: rgba(255,255,255,0.1); border-radius: 50px; position: relative; cursor: pointer; border: 1px solid rgba(255,255,255,0.2); transition: all 0.3s ease; }
-        .light-mode .theme-switch { background: #e2e8f0; border-color: #cbd5e1; }
+        .theme-switch { width: 54px; height: 28px; background: rgba(255,255,255,0.1); border-radius: 50px; position: relative; cursor: pointer; border: 1px solid rgba(255,255,255,0.2); }
         .switch-dot { width: 22px; height: 22px; background: #a3e635; border-radius: 50%; position: absolute; top: 2px; left: 3px; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); display: flex; align-items: center; justify-content: center; font-size: 11px; }
         .switch-active { transform: translateX(25px); background: #0f172a; color: white; }
 
         .text-gradient { background: linear-gradient(to right, #a3e635, #ffffff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }
         
-        input, select, textarea { transition: all 0.3s ease; border-bottom: 1px solid rgba(255,255,255,0.1) !important; }
-        input:focus { border-color: #a3e635 !important; }
+        input, select, textarea { transition: all 0.3s ease; border-bottom: 1px solid rgba(255,255,255,0.1) !important; appearance: none; }
+        input:focus, select:focus, textarea:focus { border-color: #a3e635 !important; padding-left: 10px; }
         .step-badge { background: linear-gradient(135deg, #a3e635 0%, #65a30d 100%); box-shadow: 0 0 20px rgba(163,230,53,0.3); }
 
-        /* --- RESPONSIVE ADJUSTMENTS --- */
         @media (max-width: 768px) {
             html, body { cursor: auto; }
             #cursor-dot, #cursor-outline { display: none; }
-            .glass { border-radius: 2rem !important; }
-            h1 { font-size: 2.5rem !important; }
-            section.glass { padding: 2rem !important; }
         }
     </style>
 </head>
 
 <body class="antialiased selection:bg-acidGreen selection:text-dark overflow-x-hidden" 
-      x-data="{ darkMode: localStorage.getItem('theme') === 'light' ? false : true, plan: 'starter', mobileMenu: false }" 
+      x-data="{ darkMode: localStorage.getItem('theme') === 'light' ? false : true, mobileMenu: false, company: '', name: '' }" 
       x-init="$watch('darkMode', val => localStorage.setItem('theme', val ? 'dark' : 'light'))"
       :class="{ 'light-mode': !darkMode }">
 
@@ -73,12 +65,11 @@
     <div id="cursor-outline"></div>
 
     <nav class="max-w-7xl mx-auto px-4 md:px-6 py-6 md:py-8 relative z-50">
-        <div class="glass p-4 rounded-3xl flex justify-between items-center px-6 md:px-8 shadow-2xl">
-            <a href="index.html" class="flex items-center gap-2">
-                <div class="w-6 h-6 bg-acidGreen rounded-sm rotate-45"></div>
+        <div class="glass p-4 rounded-3xl flex justify-between items-center px-6 md:px-8 shadow-2xl border-white/10">
+            <a href="index.html" class="flex items-center gap-2 group">
+                <div class="w-6 h-6 bg-acidGreen rounded-sm rotate-45 group-hover:rotate-90 transition-transform duration-500"></div>
                 <span class="font-title text-acidGreen text-sm md:text-lg uppercase tracking-tighter">GEOPTIME</span>
             </a>
-
 
             <div class="flex items-center gap-4 md:gap-6">
                 <div class="theme-switch" @click="darkMode = !darkMode">
@@ -87,59 +78,127 @@
                         <span x-show="!darkMode">☀️</span>
                     </div>
                 </div>
-                <a href="index.html#tarifs" class="hidden sm:block bg-white text-dark px-6 py-2 rounded-full font-black text-[10px] uppercase hover:bg-acidGreen transition">Retour</a>
+                <a href="index.html#tarifs" class="hidden sm:block bg-white text-dark px-6 py-2 rounded-full font-black text-[10px] uppercase hover:bg-acidGreen transition-colors duration-300">Retour</a>
                 <button @click="mobileMenu = !mobileMenu" class="lg:hidden text-acidGreen text-xl">
                     <span x-show="!mobileMenu">☰</span>
                     <span x-show="mobileMenu">✕</span>
                 </button>
             </div>
         </div>
-        <div x-show="mobileMenu" x-transition class="lg:hidden glass mt-2 rounded-2xl p-6 grid grid-cols-2 gap-4 text-[10px] font-bold uppercase text-center">
-            <a href="index.html" class="col-span-2 text-acidGreen">Retour Accueil</a>
-        </div>
     </nav>
 
-    <main class="max-w-5xl mx-auto px-6 py-12 md:py-16">
+    <main class="max-w-7xl mx-auto px-6 py-12 md:py-16">
         <header class="text-center mb-16 md:mb-24">
-            <h1 class="font-title text-4xl md:text-7xl text-white font-bold mb-6 md:mb-8 tracking-tighter uppercase italic leading-none">
-                Ouverture <span class="text-gradient">Compte</span>
+            <h1 class="font-title text-4xl md:text-8xl text-white font-bold mb-6 tracking-tighter uppercase italic leading-none">
+                Onboarding <span class="text-gradient">PRO</span>
             </h1>
-            <p class="text-slate-500 uppercase tracking-[0.2em] md:tracking-[0.3em] text-[9px] md:text-[10px] font-bold italic">Formulaire d'enregistrement professionnel GEOPTIME</p>
+            <p class="text-slate-500 uppercase tracking-[0.4em] text-[9px] md:text-[11px] font-bold italic">Accédez à l'excellence géographique</p>
         </header>
 
-        <form action="#" class="grid lg:grid-cols-3 gap-8 md:gap-12">
-            <div class="lg:col-span-2 space-y-8 md:space-y-12">
-                <section class="glass p-6 md:p-10 rounded-[2.5rem] md:rounded-[3.5rem] relative overflow-hidden">
-                    <div class="absolute top-0 right-0 p-4 md:p-8 opacity-10 font-title text-4xl md:text-6xl text-white">01</div>
-                    <div class="flex items-center gap-4 mb-8 md:mb-10">
-                        <div class="w-8 h-8 md:w-10 md:h-10 step-badge rounded-full flex items-center justify-center text-dark font-black">1</div>
-                        <h2 class="font-title text-white text-xs md:text-sm uppercase tracking-widest">Entreprise</h2>
+        <div class="grid lg:grid-cols-12 gap-12">
+            <form action="#" class="lg:col-span-8 space-y-12">
+                
+                <section class="glass p-8 md:p-12 rounded-[2.5rem] relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-8 opacity-5 font-title text-7xl md:text-9xl text-white pointer-events-none">01</div>
+                    <div class="flex items-center gap-4 mb-12">
+                        <div class="w-10 h-10 step-badge rounded-full flex items-center justify-center text-dark font-black">1</div>
+                        <h2 class="font-title text-white text-sm md:text-base uppercase tracking-widest">Identité Entreprise</h2>
                     </div>
-                    <div class="grid md:grid-cols-2 gap-x-10 gap-y-6 md:gap-y-8">
-                        <input type="text" required placeholder="RAISON SOCIALE" class="w-full bg-transparent py-3 outline-none font-bold text-white text-xs uppercase">
-                        <input type="text" required placeholder="SIRET / TVA" class="w-full bg-transparent py-3 outline-none font-bold text-white text-xs">
-                        <input type="text" required placeholder="ADRESSE DU SIÈGE" class="w-full bg-transparent py-3 outline-none font-bold text-white text-xs uppercase md:col-span-2">
+                    
+                    <div class="grid md:grid-cols-2 gap-x-12 gap-y-10">
+                        <div class="space-y-2">
+                            <label class="text-[9px] font-black text-acidGreen uppercase tracking-widest">Raison Sociale</label>
+                            <input x-model="company" type="text" required placeholder="EX: GEOPTIME SARL" class="w-full bg-transparent py-3 outline-none font-bold text-white text-sm uppercase">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-[9px] font-black text-acidGreen uppercase tracking-widest">SIRET / Numéro de TVA</label>
+                            <input type="text" required placeholder="8 chiffres minimum" class="w-full bg-transparent py-3 outline-none font-bold text-white text-sm">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-[9px] font-black text-acidGreen uppercase tracking-widest">Secteur d'activité</label>
+                            <select class="w-full bg-transparent py-3 outline-none font-bold text-white text-sm uppercase cursor-pointer">
+                                <option class="bg-dark">Logistique & Transport</option>
+                                <option class="bg-dark">Urbanisme & Smart City</option>
+                                <option class="bg-dark">Retail & Expansion</option>
+                                <option class="bg-dark">Environnement</option>
+                            </select>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-[9px] font-black text-acidGreen uppercase tracking-widest">Taille de l'entreprise</label>
+                            <select class="w-full bg-transparent py-3 outline-none font-bold text-white text-sm uppercase cursor-pointer">
+                                <option class="bg-dark">1 - 10 employés</option>
+                                <option class="bg-dark">11 - 50 employés</option>
+                                <option class="bg-dark">51 - 250 employés</option>
+                                <option class="bg-dark">250+ employés</option>
+                            </select>
+                        </div>
+                        <div class="space-y-2 md:col-span-2">
+                            <label class="text-[9px] font-black text-acidGreen uppercase tracking-widest">Siège Social</label>
+                            <input type="text" required placeholder="ADRESSE COMPLÈTE" class="w-full bg-transparent py-3 outline-none font-bold text-white text-sm uppercase">
+                        </div>
                     </div>
                 </section>
 
-                <section class="glass p-6 md:p-10 rounded-[2.5rem] md:rounded-[3.5rem] relative overflow-hidden">
-                    <div class="absolute top-0 right-0 p-4 md:p-8 opacity-10 font-title text-4xl md:text-6xl text-white">02</div>
-                    <div class="flex items-center gap-4 mb-8 md:mb-10">
-                        <div class="w-8 h-8 md:w-10 md:h-10 step-badge rounded-full flex items-center justify-center text-dark font-black">2</div>
-                        <h2 class="font-title text-white text-xs md:text-sm uppercase tracking-widest">Coordonnées</h2>
+                <section class="glass p-8 md:p-12 rounded-[2.5rem] relative overflow-hidden">
+                    <div class="absolute top-0 right-0 p-8 opacity-5 font-title text-7xl md:text-9xl text-white pointer-events-none">02</div>
+                    <div class="flex items-center gap-4 mb-12">
+                        <div class="w-10 h-10 step-badge rounded-full flex items-center justify-center text-dark font-black">2</div>
+                        <h2 class="font-title text-white text-sm md:text-base uppercase tracking-widest">Coordonnées</h2>
                     </div>
-                    <div class="grid md:grid-cols-2 gap-x-10 gap-y-6 md:gap-y-8">
-                        <input type="text" required placeholder="PRÉNOM ET NOM" class="w-full bg-transparent py-3 outline-none font-bold text-white text-xs uppercase">
-                        <input type="email" required placeholder="VOTRE EMAIL PROFESSIONNEL" class="w-full bg-transparent py-3 outline-none font-bold text-white text-xs uppercase border-b-2 border-acidGreen">
-                        <input type="password" required placeholder="MOT DE PASSE" class="w-full bg-transparent py-3 outline-none font-bold text-white text-xs">
-                        <input type="tel" required placeholder="TÉLÉPHONE DIRECT" class="w-full bg-transparent py-3 outline-none font-bold text-white text-xs">
-                        <input type="textarea" required placeholder="sujet" class="w-full bg-transparent py-3 outline-none font-bold text-white text-xs">
-
+                    
+                    <div class="grid md:grid-cols-2 gap-x-12 gap-y-10">
+                        <div class="space-y-2">
+                            <label class="text-[9px] font-black text-acidGreen uppercase tracking-widest">Nom Complet</label>
+                            <input x-model="name" type="text" required placeholder="JEAN DUPONT" class="w-full bg-transparent py-3 outline-none font-bold text-white text-sm uppercase">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-[9px] font-black text-acidGreen uppercase tracking-widest">Email Professionnel</label>
+                            <input type="email" required placeholder="PRO@ENTREPRISE.FR" class="w-full bg-transparent py-3 outline-none font-bold text-white text-sm uppercase">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-[9px] font-black text-acidGreen uppercase tracking-widest">Téléphone</label>
+                            <input type="tel" required placeholder="+33 6 00 00 00 00" class="w-full bg-transparent py-3 outline-none font-bold text-white text-sm">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-[9px] font-black text-acidGreen uppercase tracking-widest">Mot de passe</label>
+                            <input type="password" required placeholder="••••••••" class="w-full bg-transparent py-3 outline-none font-bold text-white text-sm">
+                        </div>
+                        <div class="space-y-2 md:col-span-2">
+                            <label class="text-[9px] font-black text-acidGreen uppercase tracking-widest">Note ou besoin spécifique</label>
+                            <textarea rows="3" placeholder="Dites-nous en plus sur vos besoins..." class="w-full bg-transparent py-3 outline-none font-bold text-white text-sm uppercase resize-none"></textarea>
+                        </div>
                     </div>
                 </section>
-            </div>
 
-        </form>
+                <button type="submit" class="w-full glass bg-acidGreen !text-dark py-8 rounded-[2rem] font-title font-bold text-xl uppercase tracking-[0.2em] hover:scale-[1.02] transition-transform duration-300 shadow-2xl shadow-acidGreen/20">
+                    Finaliser l'inscription
+                </button>
+            </form>
+
+            <aside class="lg:col-span-4 hidden lg:block">
+                <div class="glass p-8 rounded-[2.5rem] sticky top-32 border-acidGreen/20">
+                    <h3 class="font-title text-white text-xs uppercase mb-8 tracking-widest">Récapitulatif</h3>
+                    <div class="space-y-6">
+                        <div class="border-b border-white/5 pb-4">
+                            <p class="text-[9px] uppercase text-slate-500 mb-1">Entreprise</p>
+                            <p class="text-white font-bold tracking-tight" x-text="company || 'Non renseigné'"></p>
+                        </div>
+                        <div class="border-b border-white/5 pb-4">
+                            <p class="text-[9px] uppercase text-slate-500 mb-1">Contact</p>
+                            <p class="text-white font-bold tracking-tight" x-text="name || 'En attente'"></p>
+                        </div>
+                        <div class="bg-acidGreen/10 p-4 rounded-2xl">
+                            <p class="text-[10px] text-acidGreen font-bold uppercase leading-tight">Inclus dans l'ouverture :</p>
+                            <ul class="mt-3 text-[10px] text-slate-300 space-y-2 font-bold uppercase italic">
+                                <li>✓ Accès Dashboard Full-SaaS</li>
+                                <li>✓ Support Prioritaire (Angers)</li>
+                                <li>✓ 14 Jours d'essai gratuit</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
     </main>
 
     <footer class="pt-24 pb-12 bg-dark border-t border-white/5 relative overflow-hidden transition-all duration-500">
@@ -219,7 +278,7 @@
                 dot.style.top = outline.style.top = `${e.clientY}px`;
             }
         });
-        const links = document.querySelectorAll('a, button, input, .glass, .theme-switch');
+        const links = document.querySelectorAll('a, button, input, textarea, select, .glass, .theme-switch');
         links.forEach(l => {
             l.addEventListener('mouseenter', () => outline.classList.add('cursor-hover'));
             l.addEventListener('mouseleave', () => outline.classList.remove('cursor-hover'));
