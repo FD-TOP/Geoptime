@@ -112,9 +112,13 @@
     <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[95%] max-w-6xl">
         <div class="glass p-4 rounded-3xl flex justify-between items-center px-8">
             <div class="flex items-center gap-2">
-                <div class="w-6 h-6 bg-acidGreen rounded-sm rotate-45"></div>
-                <span class="font-title text-acidGreen tracking-tighter text-lg uppercase"><a href="#home">GEOPTIME</a></span>
-            </div>
+               <a href="#home" class="flex items-center gap-3 group">
+    <div class="w-8 h-8 rounded-lg overflow-hidden flex-shrink-0 border border-acidGreen/20 group-hover:border-acidGreen transition-colors duration-500">
+        <img src="images/logo.jpg" alt="Logo GEOPTIME" class="w-full h-full object-cover">
+    </div>
+    
+    <span class="font-title text-acidGreen tracking-tighter text-lg uppercase">GEOPTIME</span>
+</a>
             
             <div class="hidden lg:flex gap-4 xl:gap-8 text-[10px] font-bold uppercase tracking-widest">
                 <a href="#mission" class="hover:text-acidGreen transition">Mission</a>
@@ -346,7 +350,7 @@
                     <li>★ Gestion des fenêtres horaires</li>
                     <li>★ Rapports CO2 & Carburant</li>
                 </ul>
-                <a href="abonnement.html?plan=corporate" class="block py-5 rounded-3xl bg-dark text-white font-black uppercase text-[10px] hover:scale-95 transition shadow-2xl">Essayer Gratuitement</a>
+                <a href="abonnement.html?plan=corporate" class="block py-5 rounded-3xl bg-dark text-white font-black uppercase text-[10px] hover:scale-95 transition shadow-2xl">Sélectionner</a>
             </div>
             <div class="glass p-12 rounded-[4rem] hover-lift transition-all">
                 <h3 class="font-title text-[10px] mb-8 uppercase text-slate-500 tracking-widest">Corporate Fleet</h3>
@@ -400,10 +404,9 @@
         <div class="max-w-7xl mx-auto px-6">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20 text-left">
                 <div class="space-y-6">
-                    <div class="flex items-center gap-2">
-                        <div class="w-5 h-5 bg-acidGreen rounded-sm rotate-45"></div>
-                        <span class="font-title text-acidGreen text-lg uppercase tracking-tighter">GEOPTIME</span>
-                    </div>
+                    <div class="w-8 h-8 rounded-lg overflow-hidden flex-shrink-0 border border-acidGreen/20 group-hover:border-acidGreen transition-colors duration-500">
+        <img src="images/logo.jpg" alt="Logo GEOPTIME" class="w-full h-full object-cover">
+    </div>
                     <p class="text-slate-500 text-[11px] leading-relaxed uppercase font-bold italic">L'intelligence géographique angevine au service de la performance commerciale.</p>
                     <div class="flex gap-4 font-black text-xs text-slate-500 italic uppercase">
                         <a href="" class="hover:text-acidGreen transition">LN</a>
@@ -472,6 +475,7 @@
     </script>
 </body>
 </html>
+
 
 
 
